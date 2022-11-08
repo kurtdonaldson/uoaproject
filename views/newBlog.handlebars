@@ -1,0 +1,41 @@
+{{! Need to add toast message saying new blog added }}
+
+<div class="newBlog-container">
+  <div class="newBlog-form">
+    <h2>New Blog</h2>
+    <form action="./newblog" method="post" enctype="multipart/form-data">
+      <div class="flex-col mb">
+
+        <label for="blogTitle">Blog Title</label>
+        <input id="blogTitle" name="blogTitle" type="text" /required>
+      </div>
+      <div class="flex-col mb">
+        <label for="imageUrl">Blog Cover Image</label>
+        <input id="imageUrl" name="imageUrl" type="file" accept=".png,.jpg,.jpeg,.bmp"/ required>
+      </div>
+      <div class="flex-col mb">
+        <label for="blog">Blog</label><br />
+        <textarea
+          name="blog"
+          id="blog"
+          cols="30"
+          rows="4"
+          placeholder="Blog"
+        ></textarea>
+      </div>
+      <input type="submit" value="Create blog" />
+      <input type="button" onclick="location.href = 'http://localhost:3000/myBlogs';" value="Discard changes">
+    </form>
+    <br />
+    <form action="./import" method="post" enctype="multipart/form-data">
+        <div class="flex-col mb">
+        <label for="importExcel">Upload Multiple Blogs (Please follow the instruction in the template to imort blogs)<br> <a href="template/blogimporttemplate.xlsx">Download template</a></label>
+        <input id="importExcel" name="importExcel" type="file" accept=".xlsx,.xls"/>
+        </div>
+        <input type="submit" value="Import blogs" />
+
+      </div>
+    </form>
+
+  </div>
+</div>

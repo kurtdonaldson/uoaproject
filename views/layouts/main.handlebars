@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog Project</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" type = "text/css" href="/css/modal.css"/>
+    <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="text/javascript">
+          tinymce.init({
+          selector: '#blog',
+          plugins: "image code",
+      
+          image_title: true,
+          /* enable automatic uploads of images represented by blob or data URIs*/
+          automatic_uploads: true,
+          images_upload_url:"/form",
+          relative_urls: false,
+          remove_script_host: true,
+
+           //images_upload_handler: test_image_upload_handler
+          /*
+            URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upl
+            oad_url)
+            images_upload_url: 'postAcceptor.php',
+            here we add custom filepicker only to Image dialog
+          */
+            });
+  </script>
+
+  </head>
+
+  <body>
+    <nav>
+      <div>
+        <h2 id="project-title">Blog-Project</h2>
+      </div>
+      <div class="topnav-container">
+        <ul class="topnav">
+          <li><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
+          <li><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li>
+          <li><a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">New Blog</a></li>
+        </ul>
+      </div>
+      <div class="logout-login-btn-container">
+        {{#unless user}}
+        <div class="logout-login-btn">
+        <a href="/login">Login</a>
+      </div>
+      {{/unless}}
+      {{#if user}}
+      <div class="logout-login-btn">
+        <a href="/logout">Logout</a> 
+      </div>
+      {{/if}}
+      {{#if user}}
+      <a href="/users/{{user.id}}/edit"><img src={{user.avatarIconUrl}}  alt="" width=30 /></a>
+      {{/if}}
+         <div class="avatar-nav-icon">
+           <button id="theme-toggle"> Light/Dark</button>
+         </div>
+      </div>
+      <div id="burger-container">
+        <input id="toggle1" type="checkbox" />
+        <label class="hamburger1" for="toggle1">
+           <div class="top"></div>
+           <div class="meat"></div>
+           <div class="bottom"></div>
+        </label>
+      </div>
+      
+    </nav>
+
+    <div class="burger-menu-container">
+    <div class="burger-menu">
+        <ul class="ul-burger-menu">
+          {{#if user}}
+          <li class="burger-li"><a href="/users/{{user.id}}/edit">My Profile</a></li>
+          {{/if}}
+          <li class="burger-li"><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
+          <li class="burger-li" ><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li>
+          <li class="burger-li"><a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">New Blog</a></li>
+          {{#unless user}}
+          <li class="burger-li"><a href="/login">Login</a></li>
+          {{/unless}}
+          {{#if user}}
+          <li class="burger-li"><a href="/logout">Logout</a></li>
+          {{/if}}
+        </ul>
+      </div>
+      </div>
+
+    {{{body}}}
+    
+<script src="/js/crud-function.js" ></script>
+  </body>
+</html>

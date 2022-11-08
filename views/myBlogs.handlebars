@@ -1,0 +1,54 @@
+<div class="home-container">
+
+  <h1>Hello, {{user.name}}!</h1>
+
+  {{! Display a toast message if one was provided. }}
+  {{#if toastMessage}}
+    <p>{{toastMessage}}</p>
+  {{/if}}
+<form class="search-container">
+    <input type="text" id="blogSearch" placeholder="Search for blog here!">
+  </form>
+  <div class="blog-container">
+    {{#if blogs}}
+      {{#each blogs}}
+        <div class="blogs" data-value="{{this.name}},{{this.blog_title}},{{this.content}}">
+          <img class="blog-image" src="{{this.image_url}}" alt="" />
+          <h3>{{this.blog_title}}</h3>
+          <h5>{{this.created_at}}</h5>
+          <h5>Author: {{this.name}}</h5>
+          {{!-- <p>{{{this.content}}}</p> --}}
+
+          <button class="delete-btn-myblog" value="{{this.id}}">Delete
+          </button>
+
+          <a class="edit-btn-myblog" href="/blogs/{{this.id}}/edit">Edit</a>
+          <button id="modal-button" class="button" value={{this.id}}>Read more</button>
+
+        </div>
+      {{/each}}
+    {{else}}
+      <h2>You don't have any blogs</h2>
+    {{/if}}
+
+    {{!Creating the modal }}
+    <main class="modal-container" id="modal_container">
+      <div class="modal" id="modal">
+        <img class="blog-image-modal" id="image" src="" alt="" />
+        <h3 id="authId"></h3>
+        <h3 id="title"></h3>
+        <h5 id="date"></h5>
+        <div class="blog-icon-author"><img
+            src=""
+            alt=""
+            id="icon"
+          />Author:<span id="author"></span></div>
+        <p id="content"></p>
+        <span id="close-modal">&times;</span>
+        <button id="modal-close-bottom">Close</button>
+      </div>
+    </main>
+
+  </div>
+
+</div>

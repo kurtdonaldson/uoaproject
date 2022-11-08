@@ -1,0 +1,161 @@
+@import url("./nav.css");
+@import url("./utils.css");
+
+/* Fonts, misc */
+/*****************************************************************/
+* {
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 23px;
+}
+
+p,
+pre,
+th,
+td,
+li {
+  font-size: 14px;
+}
+
+a {
+  color: #3aaa35;
+}
+
+h1 {
+  font-size: 23px;
+}
+
+#project-title {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 17px;
+}
+
+pre {
+  font-family: Consolas, monospace;
+}
+
+p {
+  text-align: justify;
+}
+
+img {
+  object-fit: cover;
+}
+
+.code {
+  font-family: Consolas, monospace;
+}
+/*****************************************************************/
+
+/* Main page layout */
+/*****************************************************************/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(227, 220, 220);
+  font-family: "Courier New", Courier, monospace;
+  z-index: 0;
+  color: black;
+}
+
+/* Dark mode styling*/
+
+.dark {
+  color: white;
+  background-color: black;
+}
+.dark .blogs {
+  border: 1px solid white;
+  color: black;
+}
+.dark .newBlog-form {
+  border: 1px solid white;
+  background-color: darkgrey;
+  color: black;
+}
+
+.dark .blogs p {
+  background-color: gray;
+  color: black;
+}
+
+.dark nav {
+  background-color: darkred;
+}
+
+.dark .blogs #modal-button {
+  background-color: darkgreen;
+}
+
+.dark .blogs .edit-btn-myblog {
+  background-color: darkolivegreen;
+}
+
+.dark .blogs .delete-btn-myblog {
+  background-color: darkred;
+}
+
+.container {
+  margin: 100px 20px 20px 20px;
+  max-width: 400px;
+  margin: 100px auto;
+  padding-top: 50px;
+}
+/* ***************************************************************
+Register form validation*/
+
+.validationSpan {
+  font-size: 0.8em;
+  background-color: rgba(0, 0, 0, 0.425);
+  color: white;
+  width: 200px;
+}
+
+#registerUsername:not(:focus):invalid {
+  outline: none;
+}
+
+#registerUsername:valid {
+  outline: 2px solid deepskyblue;
+}
+
+#registerUsername:focus:invalid {
+  outline: 2px solid red;
+}
+
+#registerUsername.error-input {
+  outline: 2px solid red !important;
+}
+
+#reEnterPassword:not(:focus):invalid {
+  outline: none;
+}
+
+#reEnterPassword:focus:invalid {
+  outline: 2px solid red;
+}
+
+#reEnterPassword.error-input {
+  outline: 2px solid red !important;
+}
+
+/* Registration form style */
+
+.avatarIconContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.avatarIcon {
+  min-width: 100px;
+}

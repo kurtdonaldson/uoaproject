@@ -1,0 +1,39 @@
+<div class="newBlog-container">
+  <div class="newBlog-form">
+    <h2>Edit Blog</h2>
+    {{! Forms can only send a get or post request from the front end. We can use method-override npm package to fix this.  }}
+    <form action="/blogs/{{blog.id}}?_method=PUT" method="post" enctype="multipart/form-data">
+      <div class="flex-col mb">
+
+        <label for="blogTitle">Blog Title</label>
+        <input
+          id="blogTitle"
+          name="blogTitle"
+          type="text"
+          value="{{blog.blog_title}}"
+        />
+      </div>
+      <div class="flex-col mb">
+        <label for="imageUrl">Update Blog Cover Image</label>
+        <input id="imageUrl" name="imageUrl" type="file" accept=".png,.jpg,.jpeg,.bmp"/>
+        <input type="hidden" name="backUpImageUrl" value="{{blog.image_url}}">
+      </div>      
+      <div id="blog-container">
+        <label for="blog">Blog</label>
+        <br />
+        <textarea
+          name="blog"
+          id="blog"
+          cols="30"
+          rows="4"
+          placeholder="Blog"
+          {{!-- <input name="image" type="file" id="upload" class="hidden" onchange=""> --}}>
+        {{{blog.content}}}
+        </textarea>
+      </div>
+      <input name="blogId" type="hidden" value={{blog.id}} />
+      <input type="submit" value="Save changes" />
+      <input type="button" onclick="location.href = 'http://localhost:3000/myBlogs';" value="Discard changes">
+    </form>
+  </div>
+</div>;

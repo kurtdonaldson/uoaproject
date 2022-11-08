@@ -1,0 +1,274 @@
+<div class="container">
+
+  {{! Display a toast message if one was provided. }}
+  {{#if toastMessage}}
+    <p>{{toastMessage}}</p>
+  {{/if}}
+
+  <h1>Edit Account Information</h1>
+    <form action="/users/{{users.id}}?_method=PUT" method="post">
+    <div class="flex-col mb">
+      <label for="editUsername">Username:</label>
+      <span class="validationSpan" id="userValue"></span>
+      <input
+        type="text"
+        name="username"
+        id="editUsername"
+        min="3"
+        max="20"
+        value="{{users.username}}"
+        required
+      />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="editPassword"> New Password:</label>
+      <input type="password" name="password" id="userPassword" required />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="confirmPassword">Confirm password:</label>
+      <span class="validationSpan" id="passwordValue"></span>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        required
+      />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="editName">Name:</label>
+      <input type="text" name="name" id="editName" value="{{users.name}}"required />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="editEmail">Email:</label>
+      <input type="email" name="email" id="editEmail" value="{{users.email}}"required />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="editDob">Date of birth:</label>
+      <input type="date" name="dob" id="editDob" value="{{users.dob}}"required />
+    </div>
+
+    <div class="flex-col mb">
+      <label for="editDescription">Describe yourself:</label>
+      <textarea
+        name="description"
+        id="editDescription"
+        cols="30"
+        rows="4"
+        
+      >{{users.description}}</textarea>
+    </div>
+
+    <div class="">
+      <label for="avatarIconSelection">Choose your avatar:</label><br />
+      <div class="avatarIconContainer">
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="bulbasaur"
+            name="avatarIconUrl"
+            value="/icons/bullbasaur.png"
+            checked
+          />
+          <label for="bulbasaur"><img
+              src="/icons/bullbasaur.png"
+              alt="bulbasaur_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="charmander"
+            name="avatarIconUrl"
+            value="/icons/charmander.png"
+          />
+          <label for="charmander"><img
+              src="/icons/charmander.png"
+              alt="charmander_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="dratini"
+            name="avatarIconUrl"
+            value="/icons/dratini.png"
+          />
+          <label for="dratini"><img
+              src="/icons/dratini.png"
+              alt="dratini_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="pikachu"
+            name="avatarIconUrl"
+            value="/icons/pikachu.png"
+          />
+          <label for="pikachu"><img
+              src="/icons/pikachu.png"
+              alt="pikachu_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="eevee"
+            name="avatarIconUrl"
+            value="/icons/eevee.png"
+          />
+          <label for="eevee"><img
+              src="/icons/eevee.png"
+              alt="eevee_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="jigglypuff"
+            name="avatarIconUrl"
+            value="/icons/jigglypuff.png"
+          />
+          <label for="jigglypuff"><img
+              src="/icons/jigglypuff.png"
+              alt="jigglypuff_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="psyduck"
+            name="avatarIconUrl"
+            value="/icons/psyduck.png"
+          />
+          <label for="psyduck"><img
+              src="/icons/psyduck.png"
+              alt="psyduck_icon"
+            /></label>
+        </div>
+        <div class="avatarIcon">
+          <input
+            type="radio"
+            id="snorlax"
+            name="avatarIconUrl"
+            value="/icons/snorlax.png"
+          />
+          <label for="snorlax"><img
+              src="/icons/snorlax.png"
+              alt="snorlax_icon"
+            /></label>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="flex-row justify-sb align-center">
+      <button id="updateBtn" type="submit">Update account</button>
+      <a id="deleteBtn" href="/deleteAccount/{{user.id}}">Delete Account</a> 
+    </div>
+
+    
+{{!-- We created an inline js script as we were unable to access curd-function js file through editAccount --}}
+    <script>
+
+      const deleteAccountBtn = document.querySelector("#deleteBtn");
+      const userNameAccount = document.querySelector("#editUsername");
+      const userValue = document.querySelector("#userValue");
+      const editUsernameInput = document.querySelector("#editUsername");
+
+      const confirmPasswordInput = document.querySelector("#confirmPassword");
+      const editPasswordInput = document.querySelector("#userPassword");
+      const passwordEditExistsSpan = document.querySelector("#passwordValue");
+
+
+      // Burger menu function
+      const burgerMenuContainerEditAcc = document.querySelector(".burger-menu-container");
+      const burgerIconEditAcc = document.querySelector(".hamburger1");
+      const burgerIconCheckedEditAcc = document.querySelector("#toggle1");
+
+      burgerIconEditAcc.addEventListener("click", function () {
+           if (burgerIconCheckedEditAcc.checked == false) {
+              burgerMenuContainerEditAcc.style.marginTop = "-20px";
+            } else {
+             burgerMenuContainerEditAcc.style.marginTop = "-500px";
+          }
+      });
+
+
+// check for username availability(unique name) on edit account page
+
+      if (userNameAccount != null) {
+  userNameAccount.addEventListener("keyup", async function () {
+    await fetch("/usernames", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: userNameAccount.value }),
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (res) {
+        userValue.innerHTML = res.userExists;
+        if (userValue.innerHTML == "Username already exists") {
+          editUsernameInput.classList.add("error-input");
+          deleteAccountBtn.setAttribute("disabled", "true");
+        } else {
+          editUsernameInput.classList.remove("error-input");
+          updateBtn.removeAttribute("disabled", "true");
+        }
+      });
+  });
+}
+
+//check for password re-enter on edit account page
+
+if (confirmPasswordInput != null) {
+  confirmPasswordInput.addEventListener("keyup", function () {
+    if (confirmPasswordInput.value != editPasswordInput.value) {
+      passwordEditExistsSpan.innerHTML = "Password does not match";
+      confirmPasswordInput.classList.add("error-input");
+      updateBtn.setAttribute("disabled", "true");
+    } else {
+      passwordEditExistsSpan.innerHTML = "Password matches";
+      confirmPasswordInput.classList.remove("error-input");
+      updateBtn.removeAttribute("disabled", "true");
+    }
+  });
+}
+ //Light dark mode function
+var darkMode = false;
+
+// default to system setting
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+	darkMode = true;
+}
+
+// preference from localStorage should overwrite
+if (localStorage.getItem('theme') === 'dark') {
+	darkMode = true;
+} else if (localStorage.getItem('theme') === 'light') {
+	darkMode = false;
+}
+
+if (darkMode) {
+	document.body.classList.toggle('dark');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+		document.body.classList.toggle('dark');
+    	localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+	});
+
+});
+    </script>
+  </form>
+
+</div>
