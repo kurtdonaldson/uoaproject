@@ -27,10 +27,10 @@ const uploadImage = multer({storage: storage});
 
 
 // The DAO that handles CRUD operations for users.
-const userDao = require("../modules/users-dao");
+const userDao = require("../modules/users-dao-pg");
 
 //The DAO that handles blogs.
-const blogsDao = require("../modules/blogs-dao");
+const blogsDao = require("../modules/blogs-dao-pg");
 const { application } = require("express");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 

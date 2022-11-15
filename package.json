@@ -18,6 +18,7 @@
     "multer": "^1.4.3",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
     "search-array": "^1.6.0",
     "sql-template-strings": "^2.2.2",
     "sqlite": "^4.1.2",

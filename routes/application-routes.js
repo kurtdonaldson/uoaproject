@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const blogsDao = require("../modules/blogs-dao");
-const userDao = require("../modules/users-dao.js");
+const blogsDao = require("../modules/blogs-dao-pg");
+const userDao = require("../modules/users-dao-pg");
 const jsonSearch = require('search-array').default
 
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
