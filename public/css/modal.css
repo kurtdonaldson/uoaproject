@@ -190,7 +190,7 @@
 
 .blogs .delete-btn-myblog {
   position: absolute;
-  top: 310px;
+  top: 301px;
   width: 55px;
   right: 20px;
   height: 25px;
@@ -211,7 +211,7 @@
 
 .blogs .edit-btn-myblog {
   position: absolute;
-  top: 310px;
+  top: 302px;
   width: 55px;
   right: 90px;
   text-decoration: none;

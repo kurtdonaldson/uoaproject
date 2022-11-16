@@ -96,6 +96,14 @@ router.get("/", async function (req, res) {
     }
   }
 
+
+  const stringArr = [];
+  newBlogsArr.forEach(x => 
+    JSON.stringify(x.created_at)
+    
+    )
+  console.log(stringArr)
+  
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
   
