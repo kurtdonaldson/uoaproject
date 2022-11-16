@@ -37,8 +37,7 @@ router.get("/register", async function (req, res) {
 router.get("/", async function (req, res) {
   //We added an if statement here to check if a user is logged in. Otherwise forEach statement wont work.
   const blogsArr = await blogsDao.allBlogs();
-  const blogsArrRows = blogsArr.rows;
-console.log(res.locals.user)
+  // const blogsArrRows = blogsArr.rows;
 
 
   
@@ -68,7 +67,7 @@ console.log(res.locals.user)
   // We are looping through the blogs array. We create new property called userLoggedIn. If authorId(from blogs) = res.locals.user.id, then userLoggedIn is true, otherwise its false.
   //Then we can render the blog delete/edit buttons on the home page Only if userLoggedIn is true.
 
-  blogsArrRows.forEach(function (element) {
+  blogsArr.forEach(function (element) {
      if (res.locals.user) {
     
       if (element.authorid == res.locals.user.id) {
@@ -105,23 +104,23 @@ console.log(res.locals.user)
 // router for /modal -sending data of the current blog clicked
 router.post("/modal", async function (req,res){
       const blogsArr = await blogsDao.allBlogs();
-      const blogsArrRows = blogsArr.rows;
+      // const blogsArrRows = blogsArr.rows;
       const blogId = req.body.blogId;
       const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
 
-           for (let i = 0; i < blogsArrRows.length; i++)
+           for (let i = 0; i < blogsArr.length; i++)
             {
               for (let j = 0; j < avatarIconsArr.length; j++)
                {
-                   if (blogsArrRows[i].authorid == avatarIconsArr[j].id)
+                   if (blogsArr[i].authorid == avatarIconsArr[j].id)
                     {
-                      blogsArrRows[i].avatariconurl = avatarIconsArr[j].avatariconurl;
+                      blogsArr[i].avatariconurl = avatarIconsArr[j].avatariconurl;
                     }
                 }
             }
-      res.locals.blogsArr = blogsArrRows;
+      res.locals.blogsArr = blogsArr;
       const modalBlog = await blogsDao.findOneBlog(blogId);
-      blogsArrRows.forEach(function (element)
+      blogsArr.forEach(function (element)
        {
            if( modalBlog.id == element.id)
            {

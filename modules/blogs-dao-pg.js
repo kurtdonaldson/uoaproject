@@ -29,11 +29,13 @@ async function myBlogs(userId) {
 async function allBlogs() {
   const db = await client;
 
-  return await db.query(SQL`
+  const blogs = await db.query(SQL`
         select blog.blog_title, blog.created_at, blog.content, blog.image_url, blog.id, blog.authorId, users.name
         from public.blog
         left join users on blog.authorId = users.id
         order by created_at desc`);
+
+  return blogs.rows;
 }
 
 // Delete a blog

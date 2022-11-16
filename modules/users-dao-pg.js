@@ -120,7 +120,7 @@ async function retrieveUserWithCredentials(username, password) {
         select * from public.users
         where username = ${username} and password = ${password}`);
 
-  return user;
+  return user.rows;
 }
 
 /**
@@ -135,7 +135,7 @@ async function retrieveUserWithAuthToken(authToken) {
         select * from public.users
         where users.authtoken = ${authToken}`);
 
-  return user;
+  return user.rows;
 }
 
 // Retrieves a single user from the database
@@ -146,7 +146,7 @@ async function retrieveUserByUsername(username) {
         select * from public.users
         where username = ${username}`);
 
-  return user;
+  return user.rows;
 }
 
 /**
@@ -157,7 +157,7 @@ async function retrieveAllUsers() {
 
   const users = await db.query(SQL`select * from public.users`);
 
-  return users;
+  return users.rows;
 }
 
 // Get an array of all the users avatar Urls
