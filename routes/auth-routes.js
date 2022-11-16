@@ -151,11 +151,14 @@ router.delete("/deleteBlog", verifyAuthenticated, async function (req, res) {
 router.get("/blogs/:id/edit", verifyAuthenticated, async function (req, res) {
   const blogId = req.params.id;
 
+
   try{
   const blog = await blogsDao.findOneBlog(blogId);
+
   //Conditional statement to check that author and user are the same. Will only allow author to edit their own blogs
   res.locals.blog = blog;
-  if(res.locals.user.id == blog.authorId){
+
+  if(res.locals.user.id == blog.authorid){
     res.render("editBlog");
   }else{
     res.setToastMessage("Unauthorised access attempted!");
@@ -296,6 +299,7 @@ router.post("/register", async function (req, res) {
 router.get("/users/:id/edit", async function (req, res) {
   const id = req.params.id;
   const idToInteger = parseInt(id);
+  
   //Check user can only edit their own account
   if(res.locals.user.id === idToInteger){
     const user = await userDao.retrieveUserById(id);
@@ -315,6 +319,7 @@ router.put("/users/:id", async function (req, res) {
 
   const hash = await bcrypt.hash(password, 12);
 
+
   const updatedUser = {
     userId: userAccountId,
     username: req.body.username,
@@ -323,7 +328,7 @@ router.put("/users/:id", async function (req, res) {
     email: req.body.email,
     dob: req.body.dob,
     description: req.body.description,
-    avatariconurl: req.body.avataricourl,
+    avatariconurl: req.body.avatarIconUrl,
   };
 
   try {

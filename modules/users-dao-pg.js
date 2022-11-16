@@ -39,7 +39,7 @@ async function retrieveUserById(id) {
         select * from public.users
         where id = ${id}`);
 
-  return user;
+  return user.rows[0];
 }
 
 //Retrieve user id when given username.
