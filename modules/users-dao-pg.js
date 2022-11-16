@@ -19,8 +19,8 @@ const client = require("./databasepg.js");
 async function createUser(user) {
   const db = await client;
 
-  const result = await db.run(SQL`
-        insert into users (username, password, name, email, dob, description, avatarIconUrl) 
+  const result = await db.query(SQL`
+        insert into public.users (username, password, name, email, dob, description, avatarIconUrl) 
         values(${user.username}, ${user.password}, ${user.name}, ${user.email}, ${user.dob}, ${user.description}, ${user.avatarIconUrl})`);
 
   // Get the auto-generated ID value, and assign it back to the user object.
@@ -35,8 +35,8 @@ async function createUser(user) {
 async function retrieveUserById(id) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        select * from users
+  const user = await db.query(SQL`
+        select * from public.users
         where id = ${id}`);
 
   return user;
@@ -46,8 +46,8 @@ async function retrieveUserById(id) {
 async function retrieveUserIdByUsername(username) {
   const db = await client;
 
-  const userId = await db.get(SQL`
-        select id from users
+  const userId = await db.query(SQL`
+        select id from public.users
         where username = ${username}`);
 
   return userId;
@@ -57,8 +57,8 @@ async function retrieveUserIdByUsername(username) {
 async function retrieveUserByEmail(email) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        select * from users
+  const user = await db.query(SQL`
+        select * from public.users
         where email = ${email}`);
 
   return user;
@@ -68,8 +68,8 @@ async function retrieveUserByEmail(email) {
 async function updatePasswordResetUsedByEmail(email) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        update users
+  const user = await db.query(SQL`
+        update public.users
         set used = 1
         where email = ${email};`);
 }
@@ -78,8 +78,8 @@ async function updatePasswordResetUsedByEmail(email) {
 async function insertResetTokenByEmail(email, passwordToken) {
   const db = await client;
 
-  const insertResetToken = await db.run(SQL`
-        update users
+  const insertResetToken = await db.query(SQL`
+        update public.users
         set passwordToken = ${passwordToken}, createdAt = datetime(), expiration = datetime(datetime(), '+60 minutes'), used = 0
         where email = ${email};`);
 }
@@ -88,8 +88,8 @@ async function insertResetTokenByEmail(email, passwordToken) {
 async function removeExpiredTokens() {
   const db = await client;
 
-  await db.run(SQL`
-      update users
+  await db.query(SQL`
+      update public.users
       set passwordToken = null, expiration = null, createdAt = null
       where expiration < datetime();`);
 }
@@ -97,9 +97,9 @@ async function removeExpiredTokens() {
 async function retrieveValidTokens(email, token) {
   const db = await client;
 
-  const userPasswordToken = await db.get(SQL`
+  const userPasswordToken = await db.query(SQL`
       select *
-      from users
+      from public.users
       where email = ${email}
       and expiration > datetime()
       and passwordToken = ${token}
@@ -116,8 +116,8 @@ async function retrieveValidTokens(email, token) {
 async function retrieveUserWithCredentials(username, password) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        select * from users
+  const user = await db.query(SQL`
+        select * from public.users
         where username = ${username} and password = ${password}`);
 
   return user;
@@ -131,9 +131,9 @@ async function retrieveUserWithCredentials(username, password) {
 async function retrieveUserWithAuthToken(authToken) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        select * from users
-        where authToken = ${authToken}`);
+  const user = await db.query(SQL`
+        select * from public.users
+        where users.authtoken = ${authToken}`);
 
   return user;
 }
@@ -142,8 +142,8 @@ async function retrieveUserWithAuthToken(authToken) {
 async function retrieveUserByUsername(username) {
   const db = await client;
 
-  const user = await db.get(SQL`
-        select * from users
+  const user = await db.query(SQL`
+        select * from public.users
         where username = ${username}`);
 
   return user;
@@ -155,7 +155,7 @@ async function retrieveUserByUsername(username) {
 async function retrieveAllUsers() {
   const db = await client;
 
-  const users = await db.all(SQL`select * from users`);
+  const users = await db.query(SQL`select * from public.users`);
 
   return users;
 }
@@ -164,8 +164,8 @@ async function retrieveAllUsers() {
 async function retrieveAllAvatarIconUrls() {
   const db = await client;
 
-  const avatarUrls = await db.all(SQL`select avatarIconUrl, id
-  from users;`);
+  const avatarUrls = await db.query(SQL`select avatarIconUrl, id
+  from public.users;`);
 
   return avatarUrls;
 }
@@ -177,8 +177,8 @@ async function retrieveAllAvatarIconUrls() {
 async function updateUser(user) {
   const db = await client;
 
-  await db.run(SQL`
-        update users
+  await db.query(SQL`
+        update public.users
         set username = ${user.username}, password = ${user.password},
             name = ${user.name}, authToken = ${user.authToken}
         where id = ${user.id}`);
@@ -188,8 +188,8 @@ async function updateUser(user) {
 async function updateUserAccount(user) {
   const db = await client;
 
-  await db.run(SQL`
-        update users
+  await db.query(SQL`
+        update public.users
         set username = ${user.username}, password = ${user.password},
             name = ${user.name}, email = ${user.email}, dob = ${user.dob}, description = ${user.description}, avatarIconUrl = ${user.avatarIconUrl}
         where id = ${user.userId}`);
@@ -199,8 +199,8 @@ async function updateUserAccount(user) {
 async function updatePasswordByEmail(email, password) {
   const db = await client;
 
-  await db.run(SQL`
-      update users
+  await db.query(SQL`
+      update public.users
       set password = ${password}
       where email = ${email};`);
 }
@@ -212,11 +212,11 @@ async function updatePasswordByEmail(email, password) {
 async function deleteUser(id) {
   const db = await client;
 
-  await db.run(SQL`
-        delete from users
+  await db.query(SQL`
+        delete from public.users
         where id = ${id}`);
 
-        await db.run(SQL`
+        await db.query(SQL`
         delete from blog
         where authorId = ${id}`);
 }

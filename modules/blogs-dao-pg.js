@@ -7,8 +7,8 @@ const fs = require("fs");
 async function newBlog(authorId, content, imageUrl, blogTitle) {
   const db = await client;
 
-  const blog = await db.run(SQL`
-            insert into blog (authorId, content, image_url, blog_title) values (${authorId}, ${content}, ${imageUrl}, ${blogTitle})`);
+  const blog = await db.query(SQL`
+            insert into public.blog (authorId, content, image_url, blog_title) values (${authorId}, ${content}, ${imageUrl}, ${blogTitle})`);
 
   return blog;
 }
@@ -17,9 +17,9 @@ async function newBlog(authorId, content, imageUrl, blogTitle) {
 async function myBlogs(userId) {
   const db = await client;
 
-  return await db.all(SQL`
+  return await db.query(SQL`
         select blog.blog_title, blog.created_at,blog.content, blog.image_url, blog.id, users.name
-        from blog
+        from public.blog
         left join users on blog.authorId = users.id
         where blog.authorId=${userId}
         order by created_at desc;`);
@@ -29,9 +29,9 @@ async function myBlogs(userId) {
 async function allBlogs() {
   const db = await client;
 
-  return await db.all(SQL`
+  return await db.query(SQL`
         select blog.blog_title, blog.created_at, blog.content, blog.image_url, blog.id, blog.authorId, users.name
-        from blog
+        from public.blog
         left join users on blog.authorId = users.id
         order by created_at desc`);
 }
@@ -40,16 +40,16 @@ async function allBlogs() {
 async function deleteBlog(blogId) {
   const db = await client;
 
-  return await db.run(SQL`delete from blog where id = ${blogId};`);
+  return await db.query(SQL`delete from public.blog where id = ${blogId};`);
 }
 
 //Find a single blog
 async function findOneBlog(blogId) {
   const db = await client;
 
-  return await db.get(SQL`
+  return await db.query(SQL`
   select blog_title, image_url, content, id, authorId
-  from blog
+  from public.blog
   where id = ${blogId};`);
 }
 
@@ -57,8 +57,8 @@ async function findOneBlog(blogId) {
 async function editBlog(blogId, blogTitle, content, imageUrl) {
   const db = await client;
 
-  return await db.run(SQL`
-  update blog
+  return await db.query(SQL`
+  update public.blog
   set blog_title = ${blogTitle}, image_url = ${imageUrl}, content = ${content}
   where id=${blogId};`);
 }

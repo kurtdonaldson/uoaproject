@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
 // The DAO that handles CRUD operations for users.
-const userDao = require("../modules/users-dao");
+const userDao = require("../modules/users-dao-pg");
 
 //Setting up nodemailer for password reset
 require("dotenv").config();

@@ -1,4 +1,4 @@
-const userDao = require("../modules/users-dao.js");
+const userDao = require("../modules/users-dao-pg.js");
 
 async function addUserToLocals(req, res, next) {
   const user = await userDao.retrieveUserWithAuthToken(req.cookies.authToken);
