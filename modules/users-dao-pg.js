@@ -20,8 +20,8 @@ async function createUser(user) {
   const db = await client;
 
   const result = await db.query(SQL`
-        insert into public.users (username, password, name, email, dob, description, avatarIconUrl) 
-        values(${user.username}, ${user.password}, ${user.name}, ${user.email}, ${user.dob}, ${user.description}, ${user.avatarIconUrl})`);
+        insert into public.users (username, password, name, email, dob, description, avatariconurl) 
+        values(${user.username}, ${user.password}, ${user.name}, ${user.email}, ${user.dob}, ${user.description}, ${user.avatariconurl})`);
 
   // Get the auto-generated ID value, and assign it back to the user object.
   user.id = result.lastID;
@@ -164,7 +164,7 @@ async function retrieveAllUsers() {
 async function retrieveAllAvatarIconUrls() {
   const db = await client;
 
-  const avatarUrls = await db.query(SQL`select avatarIconUrl, id
+  const avatarUrls = await db.query(SQL`select avatariconurl, id
   from public.users;`);
 
   return avatarUrls;
@@ -191,7 +191,7 @@ async function updateUserAccount(user) {
   await db.query(SQL`
         update public.users
         set username = ${user.username}, password = ${user.password},
-            name = ${user.name}, email = ${user.email}, dob = ${user.dob}, description = ${user.description}, avatarIconUrl = ${user.avatarIconUrl}
+            name = ${user.name}, email = ${user.email}, dob = ${user.dob}, description = ${user.description}, avatariconurl = ${user.avatariconurl}
         where id = ${user.userId}`);
 }
 

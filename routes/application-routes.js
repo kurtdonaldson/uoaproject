@@ -38,9 +38,14 @@ router.get("/", async function (req, res) {
   //We added an if statement here to check if a user is logged in. Otherwise forEach statement wont work.
   const blogsArr = await blogsDao.allBlogs();
   const blogsArrRows = blogsArr.rows;
+console.log(res.locals.user)
+
 
   
   const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
+  const avatarIconsArrRows = avatarIconsArr.rows;
+
+
 
   const newBlogsArr = [];
 
@@ -66,7 +71,7 @@ router.get("/", async function (req, res) {
   blogsArrRows.forEach(function (element) {
      if (res.locals.user) {
     
-      if (element.authorId == res.locals.user.id) {
+      if (element.authorid == res.locals.user.id) {
         element.userLoggedIn = true;
       } else {
         element.userLoggedIn = false;
@@ -85,9 +90,9 @@ router.get("/", async function (req, res) {
   //We use a nested loop to compare loops
 
   for (let i = 0; i < newBlogsArr.length; i++) {
-    for (let j = 0; j < avatarIconsArr.length; j++) {
-      if (newBlogsArr[i].authorId == avatarIconsArr[j].id) {
-        newBlogsArr[i].avatarIconUrl = avatarIconsArr[j].avatarIconUrl;
+    for (let j = 0; j < avatarIconsArrRows.length; j++) {
+      if (newBlogsArr[i].authorid == avatarIconsArrRows[j].id) {
+        newBlogsArr[i].avatariconurl = avatarIconsArrRows[j].avatariconurl;
       }
     }
   }
@@ -100,22 +105,23 @@ router.get("/", async function (req, res) {
 // router for /modal -sending data of the current blog clicked
 router.post("/modal", async function (req,res){
       const blogsArr = await blogsDao.allBlogs();
+      const blogsArrRows = blogsArr.rows;
       const blogId = req.body.blogId;
       const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
 
-           for (let i = 0; i < blogsArr.length; i++)
+           for (let i = 0; i < blogsArrRows.length; i++)
             {
               for (let j = 0; j < avatarIconsArr.length; j++)
                {
-                   if (blogsArr[i].authorId == avatarIconsArr[j].id)
+                   if (blogsArrRows[i].authorid == avatarIconsArr[j].id)
                     {
-                   blogsArr[i].avatarIconUrl = avatarIconsArr[j].avatarIconUrl;
+                      blogsArrRows[i].avatariconurl = avatarIconsArr[j].avatariconurl;
                     }
                 }
             }
-      res.locals.blogsArr = blogsArr;
+      res.locals.blogsArr = blogsArrRows;
       const modalBlog = await blogsDao.findOneBlog(blogId);
-      blogsArr.forEach(function (element)
+      blogsArrRows.forEach(function (element)
        {
            if( modalBlog.id == element.id)
            {

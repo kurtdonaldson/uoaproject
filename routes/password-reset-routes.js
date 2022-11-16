@@ -97,7 +97,7 @@ router.get("/user/reset-password", async function (req, res, next) {
     res.locals.message = "Password reset link has expired."
     res.render("passwordReset");
   } else {
-    res.locals.userEmail = email;
+    res.locals.rows.userEmail = email;
     res.render("newPasswordForm");
   }
 });

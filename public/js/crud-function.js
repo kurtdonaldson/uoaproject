@@ -125,7 +125,7 @@ async function fetchAndDisplayModal(event) {
       const hAuthor = document.querySelector("#author");
 
       hTitle.innerHTML = res.blog_title;
-      hIcon.src = res.avatarIconUrl;
+      hIcon.src = res.avatariconurl;
       hImage.src = res.image_url;
       hAuthor.innerHTML = res.name;
       hDate.innerHTML = res.created_at;

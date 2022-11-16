@@ -11,7 +11,7 @@ create table users (
     name varchar(64),
 	email varchar(64),
 	dob varchar(64),
-	avatarIconUrl varchar(256),
+	avatariconurl varchar(256),
 	description varchar(256),
     authToken varchar(128),
 	passwordToken varchar(256) DEFAULT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE blog (
 	FOREIGN KEY (authorId) REFERENCES users(id)
 );
 
-insert into users (id, username, password, name, email, dob, description, avatarIconUrl) values
+insert into users (id, username, password, name, email, dob, description, avatariconurl) values
     (1, 'Polly', '$2b$12$9jPtwJdf6zWxToOv7aJ8wugh4ZpmobIqyApS7K.j0zfALy9R1oCY2', 'Polly', 'polly@gmail.com', '1948-09-02', 'I am too old for this sheeee. This is just great', '/icons/pikachu.png'),
 	(2, 'Kurt', '$2b$12$JYH5qlijnzGgpI4KaNA3A.OgIERg3Q8vWHv29taqVUGZwryPtzr2q', 'Kurt', 'kurt@gmail.com', '1988-01-08', 'I love to code', '/icons/dratini.png'),
 	(3, 'Nicola', '$2b$12$Dz2FDAK9ZyrecQGtsm7xqOSHOvz1Ycy3k5C8SDlefrDqacN7mFRh.', 'Nicola', 'nic@gmail.com', '1982-04-08', 'I cannot think of what to say next', '/icons/bullbasaur.png');

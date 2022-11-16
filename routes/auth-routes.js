@@ -275,7 +275,7 @@ router.post("/register", async function (req, res) {
     email: req.body.email,
     dob: req.body.dob,
     description: req.body.description,
-    avatarIconUrl: req.body.avatarIconUrl,
+    avatariconurl: req.body.avatariconurl,
   };
 
   try {
@@ -321,7 +321,7 @@ router.put("/users/:id", async function (req, res) {
     email: req.body.email,
     dob: req.body.dob,
     description: req.body.description,
-    avatarIconUrl: req.body.avatarIconUrl,
+    avatariconurl: req.body.avataricourl,
   };
 
   try {
