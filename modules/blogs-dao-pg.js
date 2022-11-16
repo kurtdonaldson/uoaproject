@@ -17,12 +17,14 @@ async function newBlog(authorId, content, imageUrl, blogTitle) {
 async function myBlogs(userId) {
   const db = await client;
 
-  return await db.query(SQL`
+  const blogs = await db.query(SQL`
         select blog.blog_title, blog.created_at,blog.content, blog.image_url, blog.id, users.name
         from blog
         left join users on blog.authorid = users.id
         where blog.authorid=${userId}
         order by created_at desc;`);
+
+  return blogs.rows
 }
 
 //Show all blogs. We do descending so blogs are shown in order they were created
@@ -49,10 +51,14 @@ async function deleteBlog(blogId) {
 async function findOneBlog(blogId) {
   const db = await client;
 
-  return await db.query(SQL`
+  const blog = await db.query(SQL`
   select blog_title, image_url, content, id, authorId
   from public.blog
   where id = ${blogId};`);
+
+
+  return blog.rows[0];
+  
 }
 
 //Edit a blog
