@@ -19,9 +19,9 @@ async function myBlogs(userId) {
 
   return await db.query(SQL`
         select blog.blog_title, blog.created_at,blog.content, blog.image_url, blog.id, users.name
-        from public.blog
-        left join users on blog.authorId = users.id
-        where blog.authorId=${userId}
+        from blog
+        left join users on blog.authorid = users.id
+        where blog.authorid=${userId}
         order by created_at desc;`);
 }
 

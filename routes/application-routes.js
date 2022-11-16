@@ -37,6 +37,9 @@ router.get("/register", async function (req, res) {
 router.get("/", async function (req, res) {
   //We added an if statement here to check if a user is logged in. Otherwise forEach statement wont work.
   const blogsArr = await blogsDao.allBlogs();
+  const blogsArrRows = blogsArr.rows;
+
+  
   const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
 
   const newBlogsArr = [];
@@ -60,7 +63,7 @@ router.get("/", async function (req, res) {
   // We are looping through the blogs array. We create new property called userLoggedIn. If authorId(from blogs) = res.locals.user.id, then userLoggedIn is true, otherwise its false.
   //Then we can render the blog delete/edit buttons on the home page Only if userLoggedIn is true.
 
-  blogsArr.forEach(function (element) {
+  blogsArrRows.forEach(function (element) {
      if (res.locals.user) {
     
       if (element.authorId == res.locals.user.id) {
