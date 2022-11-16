@@ -207,11 +207,13 @@ router.post("/login", async function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
 
+
   //We use a try catch to first check if the user with that username exists
   //If not, we use catch to say there's an authentication error.
   try {
     // Find a matching user in the database
     const user = await userDao.retrieveUserByUsername(username);
+   
 
     //Use bcrypt to compare user input password to hashed database password.
     const validPassword = await bcrypt.compare(password, user.password);

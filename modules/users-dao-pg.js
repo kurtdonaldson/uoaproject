@@ -120,7 +120,7 @@ async function retrieveUserWithCredentials(username, password) {
         select * from public.users
         where username = ${username} and password = ${password}`);
 
-  return user.rows;
+  return user.rows[0];
 }
 
 /**
@@ -135,7 +135,7 @@ async function retrieveUserWithAuthToken(authToken) {
         select * from public.users
         where users.authtoken = ${authToken}`);
 
-  return user.rows;
+  return user.rows[0];
 }
 
 // Retrieves a single user from the database
@@ -146,7 +146,7 @@ async function retrieveUserByUsername(username) {
         select * from public.users
         where username = ${username}`);
 
-  return user.rows;
+  return user.rows[0];
 }
 
 /**
