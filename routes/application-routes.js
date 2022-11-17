@@ -97,7 +97,7 @@ router.get("/", async function (req, res) {
   }
 
   //Change timezone to be more concise. 
-  const timeArray = []
+  const timeArray = [];
   newBlogsArr.forEach(x => 
     timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
     )
@@ -106,7 +106,11 @@ router.get("/", async function (req, res) {
     newBlogsArr[i].created_at = timeArray[i];
   }
 
- 
+  // convert AudioBufferSourceNode(content) into readable string
+  const contentText = [];
+  
+
+ newBlogsArr.forEach(x => {console.log(x.content.toString('utf-8'))})
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
   
