@@ -96,14 +96,17 @@ router.get("/", async function (req, res) {
     }
   }
 
-
+  //Change timezone to be more concise. 
   const timeArray = []
-  const stringifyTime = newBlogsArr.forEach(x => 
+  newBlogsArr.forEach(x => 
     timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
     )
 
-  console.log(timeArray)
-  console.log(newBlogsArr)
+  for(let i = 0; i < newBlogsArr.length; i++){
+    newBlogsArr[i].created_at = timeArray[i];
+  }
+
+ 
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
   
