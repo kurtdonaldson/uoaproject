@@ -97,13 +97,13 @@ router.get("/", async function (req, res) {
   }
 
 
-  const stringArr = [];
-  newBlogsArr.forEach(x => 
-    JSON.stringify(x.created_at)
-    
+  const timeArray = []
+  const stringifyTime = newBlogsArr.forEach(x => 
+    timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
     )
-  console.log(stringArr)
-  
+
+  console.log(timeArray)
+  console.log(newBlogsArr)
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
   
