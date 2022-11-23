@@ -216,9 +216,9 @@ async function deleteUser(id) {
         delete from public.users
         where id = ${id}`);
 
-        await db.query(SQL`
-        delete from blog
-        where authorId = ${id}`);
+        // await db.query(SQL`
+        // delete from blog
+        // where authorId = ${id}`);
 }
 
 // Export functions.

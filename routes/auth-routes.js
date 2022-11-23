@@ -344,7 +344,7 @@ router.put("/users/:id", async function (req, res) {
 //Route handler for handling delete account feature.
 
 router.get("/deleteAccount/:id", verifyAuthenticated, async function (req, res) {
-    const userAccountId = req.params.id;
+    const userAccountId = parseInt(req.params.id);
 
     try {
       await userDao.deleteUser(userAccountId);
