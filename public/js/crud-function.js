@@ -130,7 +130,6 @@ async function fetchAndDisplayModal(event) {
       hAuthor.innerHTML = res.name;
       hDate.innerHTML = res.created_at;
       hContent.innerHTML = res.content;
-      console.log(res)
     });
 }
 

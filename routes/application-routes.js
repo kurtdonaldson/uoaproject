@@ -110,7 +110,6 @@ router.get("/", async function (req, res) {
   const contentText = [];
   
 
- newBlogsArr.forEach(x => {console.log(x.content.toString('utf-8'))})
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
   
@@ -133,7 +132,18 @@ router.post("/modal", async function (req,res){
                     }
                 }
             }
+
+
+
+
       res.locals.blogsArr = blogsArr;
+      
+      // convert content buffer to string so it can be read in modal pop up
+      blogsArr.forEach(blog => {
+        blog.content = blog.content.toString('utf-8')
+      });
+
+
       const modalBlog = await blogsDao.findOneBlog(blogId);
       blogsArr.forEach(function (element)
        {
