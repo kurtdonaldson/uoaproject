@@ -61,7 +61,8 @@ async function retrieveUserByEmail(email) {
         select * from public.users
         where email = ${email}`);
 
-  return user;
+      
+  return user.rows[0];
 }
 
 //Update passwordtoken used status by email
@@ -80,7 +81,7 @@ async function insertResetTokenByEmail(email, passwordToken) {
 
   const insertResetToken = await db.query(SQL`
         update public.users
-        set passwordToken = ${passwordToken}, createdAt = datetime(), expiration = datetime(datetime(), '+60 minutes'), used = 0
+        set passwordToken = ${passwordToken}, createdAt = now(), expiration = now() + interval '60 minutes', used = 0
         where email = ${email};`);
 }
 
@@ -90,9 +91,11 @@ async function removeExpiredTokens() {
 
   await db.query(SQL`
       update public.users
-      set passwordToken = null, expiration = null, createdAt = null
-      where expiration < datetime();`);
+      set passwordtoken = null, expiration = null, createdat = null
+      where expiration < now();`);
 }
+
+// where expiration < createdat + interval '60 minutes';`
 
 async function retrieveValidTokens(email, token) {
   const db = await client;
@@ -101,7 +104,7 @@ async function retrieveValidTokens(email, token) {
       select *
       from public.users
       where email = ${email}
-      and expiration > datetime()
+      and expiration > now()
       and passwordToken = ${token}
       and used = '0';`);
 

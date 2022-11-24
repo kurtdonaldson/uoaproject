@@ -31,9 +31,12 @@ router.get("/newPasswordForm", function (req, res) {
 router.post("/reset-password-email", async function (req, res) {
   const emailInput = req.body.resetEmail;
 
+
+
   try {
     const user = await userDao.retrieveUserByEmail(emailInput);
     if (user) {
+
       const userEmail = user.email;
       //Set any existing passwordToken used status to used
       await userDao.updatePasswordResetUsedByEmail(userEmail);
@@ -97,7 +100,7 @@ router.get("/user/reset-password", async function (req, res, next) {
     res.locals.message = "Password reset link has expired."
     res.render("passwordReset");
   } else {
-    res.locals.rows.userEmail = email;
+    res.locals.userEmail = email;
     res.render("newPasswordForm");
   }
 });
