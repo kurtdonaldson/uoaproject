@@ -365,7 +365,24 @@ router.get("/newBlog", verifyAuthenticated, function (req, res) {
 //Route handler for myBlogs page. The blogs that match the user id will be populated on the myBlogs page
 router.get("/myBlogs", verifyAuthenticated, async function (req, res) {
   const userId = res.locals.user.id;
-  res.locals.blogs = await blogsDao.myBlogs(userId);
+  const blogs = await blogsDao.myBlogs(userId);
+
+   //Change timezone to be more concise. 
+   const timeArray = [];
+   blogs.forEach(x => 
+     timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
+     )
+   
+    //Loop through timeArray and assign modified date to careted_at property
+     for(let i = 0; i < blogs.length; i++){
+      blogs[i].created_at = timeArray[i];
+    }
+
+  res.locals.blogs = blogs;
+
+  console.log(blogs)
+
+  
 
   res.render("myBlogs", { myBlogsActive: true });
 });
