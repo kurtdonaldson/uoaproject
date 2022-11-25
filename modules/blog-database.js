@@ -39,15 +39,7 @@ CREATE TABLE IF NOT EXISTS public.users
     updateat time with time zone,
     used character varying COLLATE pg_catalog."default" NOT NULL DEFAULT '0'::character varying,
     CONSTRAINT users_pkey PRIMARY KEY (id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.users
-    OWNER to postgres;
-
-
--- Table: public.blog
+);
 
 CREATE TABLE IF NOT EXISTS public.blog
 (
@@ -63,18 +55,13 @@ CREATE TABLE IF NOT EXISTS public.blog
         ON UPDATE NO ACTION
         ON DELETE CASCADE
         NOT VALID
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.blog
-    OWNER to postgres;
+);
 
 insert into users (id, username, password, name, email, dob, description, avatariconurl) values
- (1, 'Polly', '$2b$12$9jPtwJdf6zWxToOv7aJ8wugh4ZpmobIqyApS7K.j0zfALy9R1oCY2', 'Polly', 'polly@gmail.com', '1948-09-02', 'I am too old for this sheeee. This is just great', '/icons/pikachu.png'),
+    (1, 'Polly', '$2b$12$9jPtwJdf6zWxToOv7aJ8wugh4ZpmobIqyApS7K.j0zfALy9R1oCY2', 'Polly', 'polly@gmail.com', '1948-09-02', 'I am too old for this sheeee. This is just great', '/icons/pikachu.png'),
 	(2, 'Kurt', '$2b$12$JYH5qlijnzGgpI4KaNA3A.OgIERg3Q8vWHv29taqVUGZwryPtzr2q', 'Kurt', 'kurt@gmail.com', '1988-01-08', 'I love to code', '/icons/dratini.png'),
 	(3, 'Nicola', '$2b$12$Dz2FDAK9ZyrecQGtsm7xqOSHOvz1Ycy3k5C8SDlefrDqacN7mFRh.', 'Nicola', 'nic@gmail.com', '1982-04-08', 'I cannot think of what to say next', '/icons/bullbasaur.png');
-	
+
 insert into blog (created_at, blog_title, content, authorId, image_url) values
 	(now(), 'My big story', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id diam maecenas ultricies mi eget mauris pharetra et. Sagittis eu volutpat odio facilisis mauris sit.', 2, 'https://i.natgeofe.com/k/63b1a8a7-0081-493e-8b53-81d01261ab5d/red-panda-full-body_4x3.jpg'),
 	(now(), 'My other big story', 'Et malesuada fames ac turpis egestas. Dolor magna eget est lorem ipsum dolor sit amet consectetur. Diam vulputate ut pharetra sit amet aliquam. Morbi tincidunt ornare massa eget. Id ornare arcu odio ut sem nulla pharetra diam. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque. ', 3, 'https://media.wired.com/photos/593261cab8eb31692072f129/master/pass/85120553.jpg'),
@@ -82,7 +69,6 @@ insert into blog (created_at, blog_title, content, authorId, image_url) values
 	(now(), 'My life story', 'Magna fermentum iaculis eu non diam phasellus vestibulum. Euismod elementum nisi quis eleifend quam adipiscing. Accumsan tortor posuere ac ut consequat semper. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Semper viverra nam libero justo laoreet sit amet. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Volutpat blandit aliquam etiam erat velit.', 2, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hippopotamus-extreme-animals-social-1642555668.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'),
 	(now(), 'Next Chapter in my life', 'rtyuertyretyretyerty', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_Panda_2004-03-2.jpg/1200px-Giant_Panda_2004-03-2.jpg'),
 	(now(), 'My second big story', 'That is bloody good! Thanks!', 1, 'https://a-z-animals.com/media/tiger_laying_hero_background.jpg');
-
 `);
 
 execute(text).then(result => {
@@ -94,3 +80,4 @@ execute(text).then(result => {
 module.exports = {
 	execute
 }
+
