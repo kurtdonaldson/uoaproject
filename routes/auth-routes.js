@@ -380,9 +380,6 @@ router.get("/myBlogs", verifyAuthenticated, async function (req, res) {
 
   res.locals.blogs = blogs;
 
-  console.log(blogs)
-
-  
 
   res.render("myBlogs", { myBlogsActive: true });
 });

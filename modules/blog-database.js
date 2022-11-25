@@ -1,18 +1,18 @@
 const SQL = require("sql-template-strings");
-const client = require("../modules/databasepg.js");
+const client = require("./databasepg.js");
 
 const execute = async (query) => {
     try {
-		-- gets connection
+		// gets connection
         const db = await client;
-		-- sends queries     
+		// sends queries     
         const result = await db.query(query);  
         return true;
     } catch (error) {
         console.error(error.stack);
         return false;
     } finally {
-		-- closes connection
+		// closes connection
         await client.end();         
     }
 };
