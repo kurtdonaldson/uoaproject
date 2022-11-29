@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS public.users
     description character varying(256) COLLATE pg_catalog."default",
     authtoken character varying(128) COLLATE pg_catalog."default",
     passwordtoken character varying(256) COLLATE pg_catalog."default" DEFAULT NULL::character varying,
-    expiration time with time zone,
-    createdat time with time zone,
-    updateat time with time zone,
+    expiration timestamp with time zone,
+    createdat timestamp with time zone,
+    updateat timestamp with time zone,
     used character varying COLLATE pg_catalog."default" NOT NULL DEFAULT '0'::character varying,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
