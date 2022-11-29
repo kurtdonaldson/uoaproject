@@ -37,10 +37,10 @@ The password link expires after 60 minutes.
 Instructions for use
 
 1. npm install
-1a. If uploads folder not created, add uploads folder under public
-2. Open SQLite and create a database called blog-database.db in the project folder.
-3. Open and run blog-database.sql in the blog-database.db database. This file is located in the sql folder within the project folder.
-4. Write changes.
+2. Open PGadmin4 and create a database called blog-database.db
+3. Navigate to the module folder and run the following command:
+node blog-database.js
+4. 
 5. Add .env file in project foler. Add the following to the .env file. 
 EMAIL_USERNAME=iguanas22@zohomail.com
 EMAIL_PASSWORD=tDBJzqJ3MqbT
@@ -57,4 +57,5 @@ DOMAIN=localhost:3000
 Issues
  1. The primary key sequence was not working with users id. When creating a new client, the id would not increment from the last user. It would start at 1. 
  This worked fine for the blog table. After research, I realised that my user table had become out of sync. Likely due to the mass import of data to initialise the table. 
- I added a simple SELECT co
+ I added a SELECT command to fix this. 
+ "SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));"
