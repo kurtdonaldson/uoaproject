@@ -1,7 +1,7 @@
 // Setup Express
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const methodOverride = require("method-override");
 
 //Using method override to allow use of put request on client side. Client side only accepts get or post requests
