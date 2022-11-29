@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS public.users
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
 
+
 CREATE TABLE IF NOT EXISTS public.blog
 (
     id serial NOT NULL,
@@ -69,6 +70,8 @@ insert into blog (created_at, blog_title, content, authorId, image_url) values
 	(now(), 'My life story', 'Magna fermentum iaculis eu non diam phasellus vestibulum. Euismod elementum nisi quis eleifend quam adipiscing. Accumsan tortor posuere ac ut consequat semper. Sit amet facilisis magna etiam tempor orci eu lobortis elementum. Semper viverra nam libero justo laoreet sit amet. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Volutpat blandit aliquam etiam erat velit.', 2, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hippopotamus-extreme-animals-social-1642555668.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'),
 	(now(), 'Next Chapter in my life', 'rtyuertyretyretyerty', 1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_Panda_2004-03-2.jpg/1200px-Giant_Panda_2004-03-2.jpg'),
 	(now(), 'My second big story', 'That is bloody good! Thanks!', 1, 'https://a-z-animals.com/media/tiger_laying_hero_background.jpg');
+
+    SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));
 `);
 
 execute(text).then(result => {
