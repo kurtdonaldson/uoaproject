@@ -1,3 +1,6 @@
+# File uploads
+public/uploads/
+
 
 # Mac stuff
 .DS_Store
