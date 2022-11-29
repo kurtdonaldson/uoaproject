@@ -55,12 +55,12 @@
   margin-top: 60px;
   overflow: scroll;
   background-color: rgb(223 199 199);
-  top: 9px;
+  top: 70px;
   left: 10vw;
   right: 10vw;
   width: 80vw;
   height: 75vh;
-  position: absolute;
+  position: fixed;
   display: none;
   justify-content: center;
   animation: modal-open 1.3s;
@@ -190,7 +190,7 @@
 
 .blogs .delete-btn-myblog {
   position: absolute;
-  top: 310px;
+  top: 301px;
   width: 55px;
   right: 20px;
   height: 25px;
@@ -211,7 +211,7 @@
 
 .blogs .edit-btn-myblog {
   position: absolute;
-  top: 310px;
+  top: 302px;
   width: 55px;
   right: 90px;
   text-decoration: none;

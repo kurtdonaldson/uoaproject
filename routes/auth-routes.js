@@ -27,10 +27,10 @@ const uploadImage = multer({storage: storage});
 
 
 // The DAO that handles CRUD operations for users.
-const userDao = require("../modules/users-dao");
+const userDao = require("../modules/users-dao-pg");
 
 //The DAO that handles blogs.
-const blogsDao = require("../modules/blogs-dao");
+const blogsDao = require("../modules/blogs-dao-pg");
 const { application } = require("express");
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
 
@@ -151,11 +151,14 @@ router.delete("/deleteBlog", verifyAuthenticated, async function (req, res) {
 router.get("/blogs/:id/edit", verifyAuthenticated, async function (req, res) {
   const blogId = req.params.id;
 
+
   try{
   const blog = await blogsDao.findOneBlog(blogId);
+
   //Conditional statement to check that author and user are the same. Will only allow author to edit their own blogs
   res.locals.blog = blog;
-  if(res.locals.user.id == blog.authorId){
+
+  if(res.locals.user.id == blog.authorid){
     res.render("editBlog");
   }else{
     res.setToastMessage("Unauthorised access attempted!");
@@ -207,11 +210,13 @@ router.post("/login", async function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
 
+
   //We use a try catch to first check if the user with that username exists
   //If not, we use catch to say there's an authentication error.
   try {
     // Find a matching user in the database
     const user = await userDao.retrieveUserByUsername(username);
+   
 
     //Use bcrypt to compare user input password to hashed database password.
     const validPassword = await bcrypt.compare(password, user.password);
@@ -275,7 +280,7 @@ router.post("/register", async function (req, res) {
     email: req.body.email,
     dob: req.body.dob,
     description: req.body.description,
-    avatarIconUrl: req.body.avatarIconUrl,
+    avatariconurl: req.body.avatariconurl,
   };
 
   try {
@@ -294,6 +299,7 @@ router.post("/register", async function (req, res) {
 router.get("/users/:id/edit", async function (req, res) {
   const id = req.params.id;
   const idToInteger = parseInt(id);
+  
   //Check user can only edit their own account
   if(res.locals.user.id === idToInteger){
     const user = await userDao.retrieveUserById(id);
@@ -313,6 +319,7 @@ router.put("/users/:id", async function (req, res) {
 
   const hash = await bcrypt.hash(password, 12);
 
+
   const updatedUser = {
     userId: userAccountId,
     username: req.body.username,
@@ -321,7 +328,7 @@ router.put("/users/:id", async function (req, res) {
     email: req.body.email,
     dob: req.body.dob,
     description: req.body.description,
-    avatarIconUrl: req.body.avatarIconUrl,
+    avatariconurl: req.body.avatarIconUrl,
   };
 
   try {
@@ -337,7 +344,7 @@ router.put("/users/:id", async function (req, res) {
 //Route handler for handling delete account feature.
 
 router.get("/deleteAccount/:id", verifyAuthenticated, async function (req, res) {
-    const userAccountId = req.params.id;
+    const userAccountId = parseInt(req.params.id);
 
     try {
       await userDao.deleteUser(userAccountId);
@@ -358,7 +365,21 @@ router.get("/newBlog", verifyAuthenticated, function (req, res) {
 //Route handler for myBlogs page. The blogs that match the user id will be populated on the myBlogs page
 router.get("/myBlogs", verifyAuthenticated, async function (req, res) {
   const userId = res.locals.user.id;
-  res.locals.blogs = await blogsDao.myBlogs(userId);
+  const blogs = await blogsDao.myBlogs(userId);
+
+   //Change timezone to be more concise. 
+   const timeArray = [];
+   blogs.forEach(x => 
+     timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
+     )
+   
+    //Loop through timeArray and assign modified date to careted_at property
+     for(let i = 0; i < blogs.length; i++){
+      blogs[i].created_at = timeArray[i];
+    }
+
+  res.locals.blogs = blogs;
+
 
   res.render("myBlogs", { myBlogsActive: true });
 });

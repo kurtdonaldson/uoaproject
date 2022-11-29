@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
 // The DAO that handles CRUD operations for users.
-const userDao = require("../modules/users-dao");
+const userDao = require("../modules/users-dao-pg");
 
 //Setting up nodemailer for password reset
 require("dotenv").config();
@@ -31,9 +31,12 @@ router.get("/newPasswordForm", function (req, res) {
 router.post("/reset-password-email", async function (req, res) {
   const emailInput = req.body.resetEmail;
 
+
+
   try {
     const user = await userDao.retrieveUserByEmail(emailInput);
     if (user) {
+
       const userEmail = user.email;
       //Set any existing passwordToken used status to used
       await userDao.updatePasswordResetUsedByEmail(userEmail);

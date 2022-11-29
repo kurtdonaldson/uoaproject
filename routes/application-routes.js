@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const blogsDao = require("../modules/blogs-dao");
-const userDao = require("../modules/users-dao.js");
+const blogsDao = require("../modules/blogs-dao-pg");
+const userDao = require("../modules/users-dao-pg");
 const jsonSearch = require('search-array').default
 
 const { verifyAuthenticated } = require("../middleware/auth-middleware.js");
@@ -37,7 +37,14 @@ router.get("/register", async function (req, res) {
 router.get("/", async function (req, res) {
   //We added an if statement here to check if a user is logged in. Otherwise forEach statement wont work.
   const blogsArr = await blogsDao.allBlogs();
+  // const blogsArrRows = blogsArr.rows;
+
+
+  
   const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
+  const avatarIconsArrRows = avatarIconsArr.rows;
+
+
 
   const newBlogsArr = [];
 
@@ -63,7 +70,7 @@ router.get("/", async function (req, res) {
   blogsArr.forEach(function (element) {
      if (res.locals.user) {
     
-      if (element.authorId == res.locals.user.id) {
+      if (element.authorid == res.locals.user.id) {
         element.userLoggedIn = true;
       } else {
         element.userLoggedIn = false;
@@ -82,12 +89,26 @@ router.get("/", async function (req, res) {
   //We use a nested loop to compare loops
 
   for (let i = 0; i < newBlogsArr.length; i++) {
-    for (let j = 0; j < avatarIconsArr.length; j++) {
-      if (newBlogsArr[i].authorId == avatarIconsArr[j].id) {
-        newBlogsArr[i].avatarIconUrl = avatarIconsArr[j].avatarIconUrl;
+    for (let j = 0; j < avatarIconsArrRows.length; j++) {
+      if (newBlogsArr[i].authorid == avatarIconsArrRows[j].id) {
+        newBlogsArr[i].avatariconurl = avatarIconsArrRows[j].avatariconurl;
       }
     }
   }
+
+  //Change timezone to be more concise. 
+  const timeArray = [];
+  newBlogsArr.forEach(x => 
+    timeArray.push(JSON.stringify(x.created_at).replace("T", " ").split(".")[0].replace('"', ''))
+    )
+
+  for(let i = 0; i < newBlogsArr.length; i++){
+    newBlogsArr[i].created_at = timeArray[i];
+  }
+
+  // convert AudioBufferSourceNode(content) into readable string
+  const contentText = [];
+  
 
   res.locals.newBlogsArr = newBlogsArr;
   res.render("home", { homeActive: true });
@@ -97,6 +118,7 @@ router.get("/", async function (req, res) {
 // router for /modal -sending data of the current blog clicked
 router.post("/modal", async function (req,res){
       const blogsArr = await blogsDao.allBlogs();
+      // const blogsArrRows = blogsArr.rows;
       const blogId = req.body.blogId;
       const avatarIconsArr = await userDao.retrieveAllAvatarIconUrls();
 
@@ -104,13 +126,24 @@ router.post("/modal", async function (req,res){
             {
               for (let j = 0; j < avatarIconsArr.length; j++)
                {
-                   if (blogsArr[i].authorId == avatarIconsArr[j].id)
+                   if (blogsArr[i].authorid == avatarIconsArr[j].id)
                     {
-                   blogsArr[i].avatarIconUrl = avatarIconsArr[j].avatarIconUrl;
+                      blogsArr[i].avatariconurl = avatarIconsArr[j].avatariconurl;
                     }
                 }
             }
+
+
+
+
       res.locals.blogsArr = blogsArr;
+      
+      // convert content buffer to string so it can be read in modal pop up
+      blogsArr.forEach(blog => {
+        blog.content = blog.content.toString('utf-8')
+      });
+
+
       const modalBlog = await blogsDao.findOneBlog(blogId);
       blogsArr.forEach(function (element)
        {
