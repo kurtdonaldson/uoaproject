@@ -1,7 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config({path: "../.env"});
 
-
 const {Client} = require('pg');
 
 const client = new Client({
