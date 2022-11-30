@@ -59,3 +59,15 @@ Issues
  This worked fine for the blog table. After research, I realised that my user table had become out of sync. Likely due to the mass import of data to initialise the table. 
  I added a SELECT command to fix this. 
  "SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));"
+
+
+EMAIL_USERNAME=iguanas22@zohomail.com
+EMAIL_PASSWORD=tDBJzqJ3MqbT
+DOMAIN=localhost:3000
+POSTGRES_PASSWORD=Auckland7
+PORT = 
+PGUSER=blog_database_lu9i_user
+PGHOST=dpg-ce37supa6gdlrbdesmp0-a
+PGPASSWORD=5bDVJiJYtxpEzkEfQXsTZQKfMj3bctib
+PGDATABASE=blog_database_lu9i
+PGPORT=5432

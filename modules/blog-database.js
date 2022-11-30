@@ -1,3 +1,4 @@
+
 const SQL = require("sql-template-strings");
 const client = require("./databasepg.js");
 
@@ -16,6 +17,25 @@ const execute = async (query) => {
         await client.end();         
     }
 };
+
+// const execute = async (query) => {
+//     try {
+//         const client = new Client({
+//             user: process.env.PGUSER,
+//             host: process.env.PGHOST,
+//             database: process.env.PGDATABASE,
+//             password: process.env.PGPASSWORD,
+//             port: process.env.PGPORT
+//         })
+// 		await client.connect()
+//         const result = await client.query(query);  
+//         console.log(result)
+//         await client.end()
+//     } catch (error) {
+//         console.error(error.stack);
+        
+//     } 
+// };
 
 const text = (SQL`
 
