@@ -4,7 +4,7 @@ dotenv.config();
 const {Client} = require('pg');
 
 
-const conectionString=process.env.PGHOST;
+const conectionString='postgres://blog_database_lu9i_user:5bDVJiJYtxpEzkEfQXsTZQKfMj3bctib@dpg-ce37supa6gdlrbdesmp0-a.oregon-postgres.render.com/blog_database_lu9i?ssl=true';
 const client = new Client({
     connectionString: conectionString
     })
