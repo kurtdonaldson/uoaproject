@@ -10,6 +10,8 @@ const userDao = require("../modules/users-dao-pg");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
+
+
 //Set up connection with Mailtrap account
 let transport = nodemailer.createTransport({
   service: "Zoho",
@@ -54,7 +56,7 @@ router.post("/reset-password-email", async function (req, res) {
         html:
           "To reset your password, please click the link below.\n\nhttp://" +
           process.env.DOMAIN +
-          "/user/reset-password?token=" +
+          "user/reset-password?token=" +
           encodeURIComponent(fpSalt) +
           "&email=" +
           userEmail,
