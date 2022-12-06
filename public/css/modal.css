@@ -148,10 +148,10 @@
 
 /* Make blogs responsive */
 @media (max-width: 650px) {
-  .blogs{
+  .blogs {
     width: auto;
   }
-  .blog-container{
+  .blog-container {
     padding: 0;
   }
 }
@@ -233,7 +233,7 @@
   color: white;
 }
 
-.blogs #modal-button {
+.blogs .modal-button {
   color: black;
   background-color: #04aa6d;
   padding: 10px 0;
@@ -246,7 +246,7 @@
   border-radius: 42px;
 }
 
-#modal-button:hover:not(.active) {
+.modal-button:hover:not(.active) {
   background-color: rgb(10, 82, 25);
 }
 

@@ -11,7 +11,7 @@ const blogTitles = document.querySelectorAll("#blogTitle");
 const blogAuthors = document.querySelectorAll("#authors");
 const blogContent = document.querySelectorAll("#content");
 
-const modalFunction = document.querySelectorAll("#modal-button");
+const modalFunction = document.querySelectorAll(".modal-button");
 let modal = document.querySelectorAll("#my-modal");
 const hAuthID = document.querySelector("#authID");
 const hTitle = document.querySelector("#title");

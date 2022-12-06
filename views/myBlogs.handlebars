@@ -6,13 +6,16 @@
   {{#if toastMessage}}
     <p>{{toastMessage}}</p>
   {{/if}}
-<form class="search-container">
-    <input type="text" id="blogSearch" placeholder="Search for blog here!">
+  <form class="search-container">
+    <input type="text" id="blogSearch" placeholder="Search for blog here!" />
   </form>
   <div class="blog-container">
     {{#if blogs}}
       {{#each blogs}}
-        <div class="blogs" data-value="{{this.name}},{{this.blog_title}},{{this.content}}">
+        <div
+          class="blogs"
+          data-value="{{this.name}},{{this.blog_title}},{{this.content}}"
+        >
           <img class="blog-image" src="{{this.image_url}}" alt="" />
           <h3>{{this.blog_title}}</h3>
           <h5>{{this.created_at}}</h5>
@@ -23,7 +26,8 @@
           </button>
 
           <a class="edit-btn-myblog" href="/blogs/{{this.id}}/edit">Edit</a>
-          <button id="modal-button" class="button" value={{this.id}}>Read more</button>
+          <button class="modal-button" class="button" value={{this.id}}>Read
+            more</button>
 
         </div>
       {{/each}}
