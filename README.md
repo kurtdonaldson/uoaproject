@@ -1,6 +1,4 @@
-# Final project &ndash; A personal blogging system &ndash; Starter project
-
-This repository contains a starting point for your team's final project.
+# Final project &ndash; A personal blogging system &ndash; 
 
 Your team should update this README to include the information required, as presented in the project handout available on Canvas.
 
@@ -36,17 +34,8 @@ The password link expires after 60 minutes.
 
 Instructions for use
 
-1. npm install
-2. Open PGadmin4 and create a database called blog-database.db
-3. Navigate to the module folder and run the following command:
-node blog-database.js
-4. 
-5. Add .env file in project foler. Add the following to the .env file. 
-EMAIL_USERNAME=iguanas22@zohomail.com
-EMAIL_PASSWORD=tDBJzqJ3MqbT
-DOMAIN=localhost:3000
-6. npm start to start server
-7. Dummy login details. 
+1. Visit https://uoa-blog-project.onrender.com/
+1. Dummy login details. 
     Username: Polly 
     Password: 123
 8. To use the password reset function, you will need to create an account with an email you can access. 
@@ -60,14 +49,3 @@ Issues
  I added a SELECT command to fix this. 
  "SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));"
 
-
-EMAIL_USERNAME=iguanas22@zohomail.com
-EMAIL_PASSWORD=tDBJzqJ3MqbT
-DOMAIN=localhost:3000
-POSTGRES_PASSWORD=Auckland7
-PORT = 
-PGUSER=blog_database_lu9i_user
-PGHOST=dpg-ce37supa6gdlrbdesmp0-a
-PGPASSWORD=5bDVJiJYtxpEzkEfQXsTZQKfMj3bctib
-PGDATABASE=blog_database_lu9i
-PGPORT=5432
