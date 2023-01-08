@@ -1,6 +1,4 @@
-# Final project &ndash; A personal blogging system &ndash; 
-
-Your team should update this README to include the information required, as presented in the project handout available on Canvas.
+# Final project &ndash; A personal blogging system
 
 Introduction
   - Our webapp was designed to allow a user to view, add, edit and delete a blog post. There is registration and login functionality
@@ -35,10 +33,10 @@ The password link expires after 60 minutes.
 Instructions for use
 
 1. Visit https://uoa-blog-project.onrender.com/
-1. Dummy login details. 
+2. Dummy login details. 
     Username: Polly 
     Password: 123
-8. To use the password reset function, you will need to create an account with an email you can access. 
+3. To use the password reset function, you will need to create an account with an email you can access. 
 
 
 # uoaproject
