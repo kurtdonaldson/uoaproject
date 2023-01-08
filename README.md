@@ -39,11 +39,8 @@ Instructions for use
 3. To use the password reset function, you will need to create an account with an email you can access. 
 
 
-# uoaproject
-
 Issues
- 1. The primary key sequence was not working with users id. When creating a new client, the id would not increment from the last user. It would start at 1. 
- This worked fine for the blog table. After research, I realised that my user table had become out of sync. Likely due to the mass import of data to initialise the table. 
+ 1. PostgreSQL mirgation. The primary key sequence was not working with users id. When creating a new client, the id would not increment from the last user. It would start at 1. This worked fine for the blog table. After research, I realised that my user table had become out of sync. Likely due to the mass import of data to initialise the table. 
  I added a SELECT command to fix this. 
  "SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));"
 
