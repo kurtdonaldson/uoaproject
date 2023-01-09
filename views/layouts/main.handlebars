@@ -37,43 +37,58 @@
 
   <body>
     <nav>
-      <div>
-        <h2 id="project-title">BLOG PROJECT</h2>
-      </div>
-      <div class="topnav-container">
-        <ul class="topnav">
-          <li><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
-          <li><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li>
-          <li><a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">New Blog</a></li>
-        </ul>
-      </div>
-      <div class="logout-login-btn-container">
-        {{#unless user}}
+      <div class="topNavbar">
+        <div>
+          <h2 id="project-title">BLOG PROJECT</h2>
+        </div>
+        <div class="topnav-container">
+          <ul class="topnav">
+            <li><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
+            <li><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li>
+            {{!-- <li><a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">Create New</a></li> --}}
+          </ul>
+        </div>
+        <div class="logout-login-btn-container">
+          {{#unless user}}
+          <div class="logout-login-btn">
+          <a href="/login">Login</a>
+        </div>
+        {{/unless}}
+        {{#if user}}
         <div class="logout-login-btn">
-        <a href="/login">Login</a>
+          <a href="/logout">Logout</a> 
+        </div>
+        {{/if}}
+        {{#if user}}
+        <a href="/users/{{user.id}}/edit"><img src={{user.avatariconurl}}  alt="" width=30 /></a>
+        {{/if}}
+           <div class="avatar-nav-icon">
+             <button id="theme-toggle"> Light/Dark</button>
+           </div>
+        </div>
+        <div id="burger-container">
+          <input id="toggle1" type="checkbox" />
+          <label class="hamburger1" for="toggle1">
+             <div class="top"></div>
+             <div class="meat"></div>
+             <div class="bottom"></div>
+          </label>
+        </div>
       </div>
-      {{/unless}}
-      {{#if user}}
-      <div class="logout-login-btn">
-        <a href="/logout">Logout</a> 
+      <div class="bottomNavbar">
+        <div class="searchViewLightDiv">
+          <div class="searchDiv">
+             <form class="search-container">
+               <input type="text" id="blogSearch" placeholder="Search for blog here!">
+             </form>
+          </div>
+          <div class="viewAllDiv"></div>
+          <div class="lightDiv"></div>
+        </div>
+        <div class="createNewBtn">
+          <a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">Create New</a>
+        </div>
       </div>
-      {{/if}}
-      {{#if user}}
-      <a href="/users/{{user.id}}/edit"><img src={{user.avatariconurl}}  alt="" width=30 /></a>
-      {{/if}}
-         <div class="avatar-nav-icon">
-           <button id="theme-toggle"> Light/Dark</button>
-         </div>
-      </div>
-      <div id="burger-container">
-        <input id="toggle1" type="checkbox" />
-        <label class="hamburger1" for="toggle1">
-           <div class="top"></div>
-           <div class="meat"></div>
-           <div class="bottom"></div>
-        </label>
-      </div>
-      
     </nav>
 
     <div class="burger-menu-container">
