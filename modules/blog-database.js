@@ -1,43 +1,42 @@
-
 const SQL = require("sql-template-strings");
 const client = require("./databasepg.js");
-
-const execute = async (query) => {
-    try {
-		// gets connection
-        const db = await client;
-		// sends queries     
-        const result = await db.query(query);  
-        return true;
-    } catch (error) {
-        console.error(error.stack);
-        return false;
-    } finally {
-		// closes connection
-        await client.end();         
-    }
-};
+const { Client } = require("pg");
 
 // const execute = async (query) => {
 //     try {
-//         const client = new Client({
-//             user: process.env.PGUSER,
-//             host: process.env.PGHOST,
-//             database: process.env.PGDATABASE,
-//             password: process.env.PGPASSWORD,
-//             port: process.env.PGPORT
-//         })
-// 		await client.connect()
-//         const result = await client.query(query);  
-//         console.log(result)
-//         await client.end()
+// 		// gets connection
+//         const db = await client;
+// 		// sends queries
+//         const result = await db.query(query);
+//         return true;
 //     } catch (error) {
 //         console.error(error.stack);
-        
-//     } 
+//         return false;
+//     } finally {
+// 		// closes connection
+//         await client.end();
+//     }
 // };
 
-const text = (SQL`
+const execute = async (query) => {
+  try {
+    const client = new Client({
+      user: process.env.PGUSER,
+      host: process.env.PGHOST,
+      database: process.env.PGDATABASE,
+      password: process.env.PGPASSWORD,
+      port: process.env.PGPORT,
+    });
+    await client.connect();
+    const result = await client.query(query);
+    console.log(result);
+    await client.end();
+  } catch (error) {
+    console.error(error.stack);
+  }
+};
+
+const text = SQL`
 
 DROP TABLE IF EXISTS public.blog CASCADE;
 DROP TABLE IF EXISTS public.users;
@@ -92,15 +91,14 @@ insert into blog (created_at, blog_title, content, authorId, image_url) values
 	(now(), 'My second big story', 'That is bloody good! Thanks!', 1, 'https://a-z-animals.com/media/tiger_laying_hero_background.jpg');
 
     SELECT setval('users_id_seq', (SELECT MAX(id) FROM public.users));
-`);
+`;
 
-execute(text).then(result => {
-    if (result) {
-        console.log('Table created');
-    }
+execute(text).then((result) => {
+  if (result) {
+    console.log("Table created");
+  }
 });
 
 module.exports = {
-	execute
-}
-
+  execute,
+};

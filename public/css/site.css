@@ -8,6 +8,10 @@
   line-height: 23px;
 }
 
+h1 {
+  font-size: 23px;
+}
+
 /* p,
 pre,
 th,
@@ -61,20 +65,57 @@ body {
   color: black;
 }
 
+/* Edit account form styling */
+
+#editAccountForm {
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#editAccountForm label {
+  color: black;
+}
 /* Dark mode styling*/
 
 .dark {
-  color: white;
+  /* color: white; */
   background-color: black;
 }
 .dark .blogs {
   border: 1px solid white;
-  color: black;
+  color: rgb(182, 182, 182);
+  background-color: #185756;
 }
+
+.dark #loginForm {
+  background-color: #185756;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.dark #loginForm p,
+label {
+  color: white;
+}
+
+.dark h1 {
+  color: white;
+}
+
 .dark .newBlog-form {
   border: 1px solid white;
-  background-color: darkgrey;
+  background-color: #185756;
   color: black;
+}
+
+.dark .newBlog-form h2 {
+  color: white;
+}
+
+.dark .blogs .modal-button {
+  color: rgb(182, 182, 182);
+  border: 1px solid #3dd2cc;
 }
 
 .dark .blogs p {
@@ -98,12 +139,22 @@ body {
   background-color: darkred;
 }
 
+.dark #editAccountForm {
+  background-color: #185756;
+}
+
+.dark #editAccountForm input,
+.dark #editAccountForm textarea {
+  background-color: #bdbdbd;
+}
+
 .container {
   margin: 100px 20px 20px 20px;
   max-width: 400px;
   margin: 100px auto;
   padding-top: 50px;
 }
+
 /* ***************************************************************
 Register form validation*/
 
@@ -154,4 +205,9 @@ Register form validation*/
 
 .avatarIcon {
   min-width: 100px;
+}
+
+/* Login page */
+#loginForm {
+  margin-top: 50px;
 }

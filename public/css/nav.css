@@ -13,10 +13,11 @@ nav {
   z-index: 99;
 }
 
-nav h2 {
+nav h2 a {
   color: white;
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 400;
+  text-decoration: none;
 }
 
 .topNavbar {

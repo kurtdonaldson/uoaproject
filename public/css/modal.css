@@ -235,6 +235,7 @@
 
 .blogs .modal-button {
   color: black;
+  font-weight: 600;
   background-color: #04aa6d;
   padding: 10px 0;
   text-align: center;
@@ -248,6 +249,7 @@
 
 .modal-button:hover:not(.active) {
   background-color: rgb(10, 82, 25);
+  color: beige;
 }
 
 .blog-image-modal {
