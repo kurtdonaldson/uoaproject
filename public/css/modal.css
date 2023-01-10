@@ -142,7 +142,7 @@
   height: 467px;
   overflow: hidden;
   position: relative;
-  border-radius: 67px;
+  border-radius: 12px;
   background-color: rgb(223 199 199);
 }
 
@@ -243,7 +243,7 @@
   margin: 0;
   width: 100%;
   border: none;
-  border-radius: 42px;
+  border-radius: 12px;
 }
 
 .modal-button:hover:not(.active) {

@@ -50,6 +50,12 @@
           {{!-- </ul> --}}
         {{!-- </div> --}}
         <div class="logout-login-btn-container">
+          <span>
+            {{#if user}}
+              Hello,
+              {{user.name}}!
+            {{/if}} 
+          </span>
           {{#unless user}}
           <div class="logout-login-btn">
           <a href="/login">Login</a>
@@ -80,6 +86,7 @@
         <div class="searchViewLightDiv">
           <div class="searchDiv">
              <form class="search-container">
+               <img src="/icons/icons8-search-30.png" alt="" width="30px">
                <input type="text" id="blogSearch" placeholder="Search">
              </form>
           </div>
@@ -98,7 +105,7 @@
               </label>
              
             </div> 
-             <span>Light Theme</span>
+             <span>Light/Dark</span>
           </div>
         </div>
         <div class="createNewBtn">

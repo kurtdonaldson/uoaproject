@@ -4,20 +4,16 @@
 /* Fonts, misc */
 /*****************************************************************/
 * {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 23px;
 }
 
-p,
+/* p,
 pre,
 th,
 td,
 li {
   font-size: 14px;
-}
-
-a {
-  color: #3aaa35;
 }
 
 h1 {
@@ -50,7 +46,7 @@ img {
 
 .code {
   font-family: Consolas, monospace;
-}
+} */
 /*****************************************************************/
 
 /* Main page layout */

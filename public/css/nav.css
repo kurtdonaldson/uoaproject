@@ -15,6 +15,8 @@ nav {
 
 nav h2 {
   color: white;
+  font-size: 2.5em;
+  font-weight: 400;
 }
 
 .topNavbar {
@@ -40,6 +42,17 @@ nav h2 {
   background: linear-gradient(0.25turn, #3dd2cc, #5b5b5b);
 }
 
+.bottomNavbar,
+select {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bottomNavbar input {
+  font-size: 18px;
+  font-style: italic;
+}
+
 .searchViewLightDiv {
   display: flex;
   margin-left: 70px;
@@ -54,6 +67,12 @@ nav h2 {
   border: 1px solid #99dfdd;
   border-radius: 20px;
   width: 388px;
+  padding-left: 40px;
+}
+
+.search-container img {
+  position: absolute;
+  transform: translate(8px, 8px);
 }
 
 .viewAllDiv select {
@@ -133,6 +152,10 @@ ul.topnav li.right {
   }
 }
 
+.logout-login-btn {
+  margin-right: 10px;
+}
+
 .logout-login-btn-container {
   display: flex;
   align-items: center;
@@ -142,6 +165,8 @@ ul.topnav li.right {
 
 .logout-login-btn-container a {
   color: #303030;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
   background-color: white;
   padding: 10px;
@@ -150,7 +175,13 @@ ul.topnav li.right {
 }
 
 .logout-login-btn-container a:hover {
-  background-color: #525252;
+  background-color: #b8b8b8;
+}
+
+.logout-login-btn-container span {
+  color: white;
+  margin-right: 15px;
+  font-size: 1.1em;
 }
 
 /* newBlog page styling */
