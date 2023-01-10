@@ -23,6 +23,8 @@ const main = document.querySelector("main");
 const blogs = document.querySelectorAll(".blogs");
 const blogSearch = document.querySelector("#blogSearch");
 
+const filterBlogsSelector = document.querySelector("#filterBlogs");
+
 // Burger menu function
 const burgerMenuContainer = document.querySelector(".burger-menu-container");
 const burgerIcon = document.querySelector(".hamburger1");
@@ -173,6 +175,24 @@ if (blogSearch) {
     });
   });
 }
+
+// View my blogs button function
+filterBlogsSelector.addEventListener("click", function () {
+  // console.log(filterBlogsSelector.value);
+
+  blogs.forEach((blog) => {
+    const blogAuthorArray = blog.dataset.value.split(",");
+    const blogAuthorName = blogAuthorArray[0];
+    // console.log(blogAuthorName);
+    if (filterBlogsSelector.value == "all") {
+      blog.style.display = "block";
+    } else if (filterBlogsSelector.value != blogAuthorName) {
+      blog.style.display = "none";
+    } else {
+      blog.style.display = "block";
+    }
+  });
+});
 
 // Event listener for dark moode
 

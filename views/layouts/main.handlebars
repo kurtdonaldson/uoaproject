@@ -67,7 +67,7 @@
         </div>
         {{/if}}
         {{#if user}}
-        <a href="/users/{{user.id}}/edit"><img src={{user.avatariconurl}}  alt="" width=30 /></a>
+        <a href="/users/{{user.id}}/edit"><img src={{user.avatariconurl}}  alt="" width=30px /></a>
         {{/if}}
            {{!-- <div class="avatar-nav-icon">
              <button id="theme-toggle"> Light/Dark</button>
@@ -91,9 +91,9 @@
              </form>
           </div>
           <div class="viewAllDiv">
-            <select name="viewPage" id="viewPage">
-              <option value="viewAllBlogs">View All Blogs</option>
-              <option value="viewMyBlogs">View My Blogs</option>
+            <select name="viewPage" id="filterBlogs">
+              <option id="viewAllOption" value="all">View All Blogs</option>
+              <option id="viewMyBlogs" value={{user.name}}>View My Blogs</option>
             </select>
           </div>
           <div class="lightDiv">
