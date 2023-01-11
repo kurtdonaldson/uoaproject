@@ -1,31 +1,14 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: "../.env" });
 const SQL = require("sql-template-strings");
-const client = require("./databasepg.js");
 const { Client } = require("pg");
 
-// const execute = async (query) => {
-//     try {
-// 		// gets connection
-//         const db = await client;
-// 		// sends queries
-//         const result = await db.query(query);
-//         return true;
-//     } catch (error) {
-//         console.error(error.stack);
-//         return false;
-//     } finally {
-// 		// closes connection
-//         await client.end();
-//     }
-// };
+const conectionString = process.env.CONNECTION;
 
 const execute = async (query) => {
   try {
     const client = new Client({
-      user: process.env.PGUSER,
-      host: process.env.PGHOST,
-      database: process.env.PGDATABASE,
-      password: process.env.PGPASSWORD,
-      port: process.env.PGPORT,
+      connectionString: conectionString,
     });
     await client.connect();
     const result = await client.query(query);
@@ -59,7 +42,6 @@ CREATE TABLE IF NOT EXISTS public.users
     used character varying COLLATE pg_catalog."default" NOT NULL DEFAULT '0'::character varying,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 );
-
 
 CREATE TABLE IF NOT EXISTS public.blog
 (
@@ -102,3 +84,20 @@ execute(text).then((result) => {
 module.exports = {
   execute,
 };
+
+// Below is for desktop pgadmin4
+// const execute = async (query) => {
+//     try {
+// 		// gets connection
+//         const db = await client;
+// 		// sends queries
+//         const result = await db.query(query);
+//         return true;
+//     } catch (error) {
+//         console.error(error.stack);
+//         return false;
+//     } finally {
+// 		// closes connection
+//         await client.end();
+//     }
+// };
