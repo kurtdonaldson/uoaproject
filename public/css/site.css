@@ -95,7 +95,33 @@ body {
 }
 
 .dark #loginForm p,
-label {
+.dark #loginForm label {
+  color: white;
+}
+
+.dark #registerForm {
+  background-color: #185756;
+}
+
+.dark #registerForm label {
+  color: white;
+}
+
+.dark #registerForm input,
+.dark #registerForm textarea,
+.dark #loginForm input,
+.dark #loginForm textarea,
+.dark #passwordResetForm input,
+.dark #passwordResetForm textarea {
+  background-color: rgb(194, 194, 194);
+}
+
+.dark #passwordResetForm {
+  background-color: #185756;
+}
+
+.dark #passwordResetForm label,
+.dark #passwordResetForm p {
   color: white;
 }
 
@@ -110,6 +136,10 @@ label {
 }
 
 .dark .newBlog-form h2 {
+  color: white;
+}
+
+.dark .newBlog-form label {
   color: white;
 }
 
@@ -143,9 +173,18 @@ label {
   background-color: #185756;
 }
 
+.dark #editAccountForm label {
+  color: white;
+}
+
 .dark #editAccountForm input,
 .dark #editAccountForm textarea {
   background-color: #bdbdbd;
+}
+
+.dark .blog-toastMessage,
+.loginToastMessage {
+  color: white;
 }
 
 .container {
@@ -209,5 +248,32 @@ Register form validation*/
 
 /* Login page */
 #loginForm {
-  margin-top: 50px;
+  margin-top: 80px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#loginForm label {
+  color: black;
+}
+
+.loginToastMessage {
+  color: black;
+}
+
+/* Registration form styling */
+#registerForm {
+  margin-top: 60px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Password reset form */
+#passwordResetForm {
+  margin-top: 80px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
 }
