@@ -3,23 +3,112 @@
 nav {
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: auto;
   top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(177, 60, 60);
+
   z-index: 99;
 }
 
-nav h2 {
+nav h2 a {
   color: white;
-  padding-left: 20px;
+  font-size: 2em;
+  font-weight: 400;
+  text-decoration: none;
 }
 
-nav div button {
-  transform: translateY(50%);
-  margin-right: 30px;
+.topNavbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: linear-gradient(0.25turn, #303030, #5b5b5b);
+  height: 87px;
+}
+
+.topNavbarTitle {
+  margin-left: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.bottomNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 70px;
+  background: linear-gradient(0.25turn, #3dd2cc, #5b5b5b);
+}
+
+.bottomNavbar,
+select {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bottomNavbar input {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.searchViewLightDiv {
+  display: flex;
+  margin-left: 70px;
+}
+
+.searchViewLightDiv div {
+  padding: 0 5px;
+}
+
+.searchDiv input {
+  height: 40px;
+  border: 1px solid #99dfdd;
+  border-radius: 20px;
+  width: 388px;
+  padding-left: 40px;
+}
+
+.search-container img {
+  position: absolute;
+  transform: translate(8px, 8px);
+}
+
+.viewAllDiv select {
+  height: 40px;
+  border: 1px solid #99dfdd;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.viewAllDiv select option {
+  height: 40px;
+}
+
+.lightDiv {
+  height: 40px;
+  border: 1px solid #99dfdd;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.createNewBtn {
+  background-color: #fec7ff;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-right: 70px;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+.createNewBtn a {
+  color: black;
+  text-decoration: none;
 }
 
 ul.topnav {
@@ -64,25 +153,36 @@ ul.topnav li.right {
   }
 }
 
+.logout-login-btn {
+  margin-right: 10px;
+}
+
 .logout-login-btn-container {
   display: flex;
-  width: 150px;
-  justify-content: space-between;
   align-items: center;
-  padding-right: 30px;
+  height: 100%;
+  margin-right: 70px;
 }
 
 .logout-login-btn-container a {
-  color: white;
+  color: #303030;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-decoration: none;
-  background-color: #6d6d6db0;
-  padding: 5px 10px;
+  background-color: white;
+  padding: 10px;
   border-radius: 26px;
   transition: 0.3s;
 }
 
 .logout-login-btn-container a:hover {
-  background-color: #525252;
+  background-color: #b8b8b8;
+}
+
+.logout-login-btn-container span {
+  color: white;
+  margin-right: 15px;
+  font-size: 1.1em;
 }
 
 /* newBlog page styling */
@@ -94,7 +194,7 @@ ul.topnav li.right {
   align-items: center;
   width: 800px;
   margin: 0 auto;
-  margin-top: 78px;
+  margin-top: 158px;
 }
 
 .newBlog-form {
@@ -104,45 +204,21 @@ ul.topnav li.right {
   transform: translateY(30%);
   padding: 40px 80px;
   border-radius: 8px;
+  margin-top: -240px;
+}
+
+.newBlog-form label {
+  color: black;
 }
 
 /* Media query to make create blog modal responsive */
 @media (max-width: 880px) {
-    .newBlog-container{
-        width: auto;
-    }
-    .newBlog-form{
-        width:350px
-    }
+  .newBlog-container {
+    width: auto;
   }
-
-/* Search bar styling */
-.search-container {
-  width: 295px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 30px;
-}
-
-input#blogSearch {
-  margin: 0 auto;
-  width: 100%;
-  height: 45px;
-  padding: 0 20px;
-  font-size: 1rem;
-  border: 1px solid #04aa6d;
-  outline: none;
-  border-radius: 18px;
-}
-
-/* Dark/light theme styling */
-#theme-toggle {
-  width: 92px;
-  border-radius: 26px;
-  background-color: #83ca71;
-  position: absolute;
-  right: 50px;
-  top: 75px;
+  .newBlog-form {
+    width: 50vw;
+  }
 }
 
 /* Hamburger menu styling */
@@ -152,14 +228,14 @@ input#blogSearch {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  z-index: 1;
-  margin-top: -500px;
+  z-index: 999;
+  margin-top: -584px;
   transition: 0.3s;
 }
 
 .burger-menu {
-  position: absolute;
-  background-color: rgb(177, 60, 60);
+  position: fixed;
+  background: linear-gradient(0.25turn, #303030, #5b5b5b);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -177,7 +253,7 @@ input#blogSearch {
 .burger-li a {
   text-decoration: none;
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 /* Hamburger icon styling */
@@ -200,7 +276,7 @@ input#blogSearch {
 }
 
 .hamburger1 div {
-  background-color: rgb(61, 61, 61);
+  background-color: #3dd2cc;
   position: relative;
   width: 40px;
   height: 5px;
@@ -235,7 +311,7 @@ input#blogSearch {
 }
 
 /* Navbar responsiveness */
-@media (max-width: 700px) {
+@media (max-width: 880px) {
   .logout-login-btn-container,
   .topnav-container {
     display: none;
@@ -247,11 +323,26 @@ input#blogSearch {
     padding: 0;
     width: auto;
   }
+  .viewAllDiv,
+  .lightDiv,
+  .createNewBtn {
+    display: none;
+  }
 }
 
 /* Have burger menu close if it is open when going to a larger screen */
-@media (min-width: 701px) {
+@media (min-width: 880px) {
   .burger-menu-container {
     display: none;
+  }
+}
+
+/* Search bar responsiveness */
+@media (max-width: 600px) {
+  #project-title {
+    font-size: 4vw;
+  }
+  #blogSearch {
+    width: 60vw;
   }
 }

@@ -4,20 +4,20 @@
 /* Fonts, misc */
 /*****************************************************************/
 * {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 23px;
 }
 
-p,
+h1 {
+  font-size: 23px;
+}
+
+/* p,
 pre,
 th,
 td,
 li {
   font-size: 14px;
-}
-
-a {
-  color: #3aaa35;
 }
 
 h1 {
@@ -50,7 +50,7 @@ img {
 
 .code {
   font-family: Consolas, monospace;
-}
+} */
 /*****************************************************************/
 
 /* Main page layout */
@@ -59,26 +59,93 @@ img {
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(227, 220, 220);
+  background-color: rgb(255, 255, 255);
   font-family: "Courier New", Courier, monospace;
   z-index: 0;
   color: black;
 }
 
+/* Edit account form styling */
+
+#editAccountForm {
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#editAccountForm label {
+  color: black;
+}
 /* Dark mode styling*/
 
 .dark {
-  color: white;
+  /* color: white; */
   background-color: black;
 }
 .dark .blogs {
   border: 1px solid white;
-  color: black;
+  color: rgb(182, 182, 182);
+  background-color: #185756;
 }
+
+.dark #loginForm {
+  background-color: #185756;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.dark #loginForm p,
+.dark #loginForm label {
+  color: white;
+}
+
+.dark #registerForm {
+  background-color: #185756;
+}
+
+.dark #registerForm label {
+  color: white;
+}
+
+.dark #registerForm input,
+.dark #registerForm textarea,
+.dark #loginForm input,
+.dark #loginForm textarea,
+.dark #passwordResetForm input,
+.dark #passwordResetForm textarea {
+  background-color: rgb(194, 194, 194);
+}
+
+.dark #passwordResetForm {
+  background-color: #185756;
+}
+
+.dark #passwordResetForm label,
+.dark #passwordResetForm p {
+  color: white;
+}
+
+.dark h1 {
+  color: white;
+}
+
 .dark .newBlog-form {
   border: 1px solid white;
-  background-color: darkgrey;
+  background-color: #185756;
   color: black;
+}
+
+.dark .newBlog-form h2 {
+  color: white;
+}
+
+.dark .newBlog-form label {
+  color: white;
+}
+
+.dark .blogs .modal-button {
+  color: rgb(182, 182, 182);
+  border: 1px solid #3dd2cc;
 }
 
 .dark .blogs p {
@@ -102,12 +169,35 @@ body {
   background-color: darkred;
 }
 
+.dark #editAccountForm {
+  background-color: #185756;
+}
+
+.dark #editAccountForm label {
+  color: white;
+}
+
+.dark #editAccountForm input,
+.dark #editAccountForm textarea {
+  background-color: #bdbdbd;
+}
+
+.dark .blog-toastMessage,
+.loginToastMessage {
+  color: white;
+}
+
+.dark .loginToastMessage {
+  color: white;
+}
+
 .container {
   margin: 100px 20px 20px 20px;
   max-width: 400px;
-  margin: 100px auto;
+  margin: 145px auto;
   padding-top: 50px;
 }
+
 /* ***************************************************************
 Register form validation*/
 
@@ -158,4 +248,36 @@ Register form validation*/
 
 .avatarIcon {
   min-width: 100px;
+}
+
+/* Login page */
+#loginForm {
+  margin-top: 80px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#loginForm label {
+  color: black;
+}
+
+.loginToastMessage {
+  color: black;
+}
+
+/* Registration form styling */
+#registerForm {
+  margin-top: 60px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Password reset form */
+#passwordResetForm {
+  margin-top: 80px;
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+  padding: 20px;
+  border-radius: 5px;
 }

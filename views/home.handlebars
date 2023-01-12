@@ -1,18 +1,4 @@
 <div class="home-container">
-  <h1>Hello,
-    {{#if user}}
-    {{user.name}}!
-    {{else}}
-    log in to add your own story!
-    {{/if}} 
-  </h1>
-  {{!-- <h2>{{content}}</h2> --}}
-
-   <form class="search-container">
-    <input type="text" id="blogSearch" placeholder="Search for blog here!">
-  </form>
-    
-
 
    {{! Display a toast message if one was provided. }}
   {{#if toastMessage}}
@@ -26,20 +12,23 @@
     
   <div class="blogs" id="test" style="display: block" data-value="{{this.name}},{{this.blog_title}},{{this.content}}">
         <img class="blog-image" src="{{this.image_url}}" alt="" />
-        <h3>{{userAuthId}}</h3>
-        <h3 id="blogTitle">{{this.blog_title}}</h3>
-        <h5>{{this.created_at}}</h5>
-        <div class="blog-icon-author"><img src={{this.avatariconurl}} alt="">Author: {{this.name}}</div> 
+        <div class="blog-text">
+          <h3>{{userAuthId}}</h3>
+          <h3 id="blogTitle">{{this.blog_title}}</h3>
+          <h5><i>Published {{this.created_at}}</i> </h5>
+          <div class="blog-icon-author"><img src={{this.avatariconurl}} alt="">Author: {{this.name}}</div> 
 
-        <input type="hidden" id="authors" value="{{this.name}}">
+          <input type="hidden" id="authors" value="{{this.name}}">
         <!--<input type="hidden" id="content" value="{{this.content}}">-->
         
 
         {{!-- The delete and edit buttons only available if userLoggedIn is true --}}
-        <div style="display: {{#if this.userLoggedIn}}inline{{else}}none{{/if}};">
-          <button class="delete-btn-myblog" value="{{this.id}}">Delete
-          </button>
-          <a class="edit-btn-myblog" href="/blogs/{{this.id}}/edit">Edit</a>
+          <div style="display: {{#if this.userLoggedIn}}inline{{else}}none{{/if}};">
+            <button class="delete-btn-myblog" value="{{this.id}}">Delete
+            </button>
+            <a class="edit-btn-myblog" href="/blogs/{{this.id}}/edit">Edit</a>
+          </div>
+          
         </div>
         <button class="modal-button"  class="button" value={{this.id}}>Read more</button>
         

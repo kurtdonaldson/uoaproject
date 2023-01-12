@@ -52,7 +52,7 @@
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   padding: 0px;
-  margin-top: 60px;
+  margin-top: 120px;
   overflow: scroll;
   background-color: rgb(223 199 199);
   top: 70px;
@@ -125,7 +125,7 @@
 /* Home page: blogs */
 .home-container {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 160px;
 }
 
 .blog-container {
@@ -142,8 +142,18 @@
   height: 467px;
   overflow: hidden;
   position: relative;
-  border-radius: 67px;
-  background-color: rgb(223 199 199);
+  border-radius: 12px;
+  background-color: rgb(223, 215, 215);
+  filter: drop-shadow(0 0 0.35rem rgb(80, 80, 80));
+}
+
+.blogs h5 {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.blog-text {
+  padding-left: 20px;
 }
 
 /* Make blogs responsive */
@@ -235,6 +245,7 @@
 
 .blogs .modal-button {
   color: black;
+  font-weight: 600;
   background-color: #04aa6d;
   padding: 10px 0;
   text-align: center;
@@ -243,11 +254,12 @@
   margin: 0;
   width: 100%;
   border: none;
-  border-radius: 42px;
+  border-radius: 12px;
 }
 
 .modal-button:hover:not(.active) {
   background-color: rgb(10, 82, 25);
+  color: beige;
 }
 
 .blog-image-modal {
