@@ -253,7 +253,6 @@ Register form validation*/
 
 /* Login page */
 #loginForm {
-  margin-top: 80px;
   border: 0.5px solid rgba(0, 0, 0, 0.473);
   padding: 20px;
   border-radius: 5px;
@@ -269,7 +268,6 @@ Register form validation*/
 
 /* Registration form styling */
 #registerForm {
-  margin-top: 60px;
   border: 0.5px solid rgba(0, 0, 0, 0.473);
   padding: 20px;
   border-radius: 5px;
@@ -277,7 +275,6 @@ Register form validation*/
 
 /* Password reset form */
 #passwordResetForm {
-  margin-top: 80px;
   border: 0.5px solid rgba(0, 0, 0, 0.473);
   padding: 20px;
   border-radius: 5px;
