@@ -10,8 +10,6 @@ const userDao = require("../modules/users-dao-pg");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
-
-
 //Set up connection with Mailtrap account
 let transport = nodemailer.createTransport({
   service: "Zoho",
@@ -33,12 +31,9 @@ router.get("/newPasswordForm", function (req, res) {
 router.post("/reset-password-email", async function (req, res) {
   const emailInput = req.body.resetEmail;
 
-
-
   try {
     const user = await userDao.retrieveUserByEmail(emailInput);
     if (user) {
-
       const userEmail = user.email;
       //Set any existing passwordToken used status to used
       await userDao.updatePasswordResetUsedByEmail(userEmail);
@@ -56,7 +51,7 @@ router.post("/reset-password-email", async function (req, res) {
         html:
           "To reset your password, please click the link below.\n\nhttp://" +
           process.env.DOMAIN +
-          "user/reset-password?token=" +
+          "/user/reset-password?token=" +
           encodeURIComponent(fpSalt) +
           "&email=" +
           userEmail,
@@ -96,10 +91,10 @@ router.get("/user/reset-password", async function (req, res, next) {
   //Function to remove expired tokens when email link clicked
   await userDao.removeExpiredTokens();
 
-  // //Function to find the token. If it does not exist, redirect to login page. 
+  // //Function to find the token. If it does not exist, redirect to login page.
   const record = await userDao.retrieveValidTokens(email, passworkToken);
   if (record == null) {
-    res.locals.message = "Password reset link has expired."
+    res.locals.message = "Password reset link has expired.";
     res.render("passwordReset");
   } else {
     res.locals.userEmail = email;
