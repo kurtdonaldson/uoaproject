@@ -1,4 +1,33 @@
 <div class="home-container">
+  <div class="bottomNavbar">
+        <div class="searchViewLightDiv">
+          <div class="searchDiv">
+             <form class="search-container">
+               <img src="/icons/icons8-search-30.png" alt="" width="30px">
+               <input type="text" id="blogSearch" placeholder="Search">
+             </form>
+          </div>
+          <div class="viewAllDiv">
+            <select name="viewPage" id="filterBlogs">
+              <option id="viewAllOption" value="all">View All Blogs</option>
+              <option id="viewMyBlogs" value={{user.name}}>View My Blogs</option>
+            </select>
+          </div>
+          <div class="lightDiv">
+            <div>
+              <label class="switch">
+                <input id="theme-toggle" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+             
+            </div> 
+             <span id="lightDarkText">Light/Dark</span>
+          </div>
+        </div>
+        <div class="createNewBtn">
+          <a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">Create New</a>
+        </div>
+      </div>
 
    {{! Display a toast message if one was provided. }}
   {{#if toastMessage}}
