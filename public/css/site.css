@@ -59,7 +59,7 @@ img {
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(227, 220, 220);
+  background-color: rgb(255, 255, 255);
   font-family: "Courier New", Courier, monospace;
   z-index: 0;
   color: black;
@@ -190,7 +190,7 @@ body {
 .container {
   margin: 100px 20px 20px 20px;
   max-width: 400px;
-  margin: 100px auto;
+  margin: 145px auto;
   padding-top: 50px;
 }
 

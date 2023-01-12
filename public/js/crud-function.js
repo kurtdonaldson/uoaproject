@@ -32,9 +32,9 @@ const burgerIconChecked = document.querySelector("#toggle1");
 
 burgerIcon.addEventListener("click", function () {
   if (burgerIconChecked.checked == false) {
-    burgerMenuContainer.style.marginTop = "-20px";
+    burgerMenuContainer.style.marginTop = "-80px";
   } else {
-    burgerMenuContainer.style.marginTop = "-500px";
+    burgerMenuContainer.style.marginTop = "-584px";
   }
 });
 

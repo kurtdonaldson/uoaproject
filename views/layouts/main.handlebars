@@ -120,8 +120,8 @@
           {{#if user}}
           <li class="burger-li"><a href="/users/{{user.id}}/edit">My Profile</a></li>
           {{/if}}
-          <li class="burger-li"><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
-          <li class="burger-li" ><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li>
+          {{!-- <li class="burger-li"><a class="{{#if homeActive}}active{{/if}}" href="/">All Blogs</a></li>
+          <li class="burger-li" ><a class="{{#if myBlogsActive}}active{{/if}}" href="/myBlogs">My Blogs</a></li> --}}
           <li class="burger-li"><a class="{{#if newBlogActive}}active{{/if}}" href="/newBlog">New Blog</a></li>
           {{#unless user}}
           <li class="burger-li"><a href="/login">Login</a></li>
