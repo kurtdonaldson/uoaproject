@@ -194,7 +194,7 @@ ul.topnav li.right {
   align-items: center;
   width: 800px;
   margin: 0 auto;
-  margin-top: -60px;
+  margin-top: 158px;
 }
 
 .newBlog-form {
@@ -204,6 +204,7 @@ ul.topnav li.right {
   transform: translateY(30%);
   padding: 40px 80px;
   border-radius: 8px;
+  margin-top: -240px;
 }
 
 .newBlog-form label {
@@ -216,7 +217,7 @@ ul.topnav li.right {
     width: auto;
   }
   .newBlog-form {
-    width: 350px;
+    width: 50vw;
   }
 }
 
@@ -230,11 +231,10 @@ ul.topnav li.right {
   z-index: 999;
   margin-top: -584px;
   transition: 0.3s;
-  padding-top: 205px;
 }
 
 .burger-menu {
-  position: absolute;
+  position: fixed;
   background: linear-gradient(0.25turn, #303030, #5b5b5b);
   display: flex;
   justify-content: center;
