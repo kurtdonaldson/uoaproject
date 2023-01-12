@@ -35,6 +35,8 @@ nav h2 a {
 }
 
 .bottomNavbar {
+  position: absolute;
+  top: 87px;
   display: flex;
   justify-content: space-between;
   align-items: center;
