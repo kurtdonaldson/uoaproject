@@ -187,6 +187,10 @@ body {
   color: white;
 }
 
+.dark .loginToastMessage {
+  color: white;
+}
+
 .container {
   margin: 100px 20px 20px 20px;
   max-width: 400px;

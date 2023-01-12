@@ -147,6 +147,15 @@
   filter: drop-shadow(0 0 0.35rem rgb(80, 80, 80));
 }
 
+.blogs h5 {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.blog-text {
+  padding-left: 20px;
+}
+
 /* Make blogs responsive */
 @media (max-width: 650px) {
   .blogs {
